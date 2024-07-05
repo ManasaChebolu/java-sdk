@@ -2,6 +2,7 @@ package io.swagger.client.api.details;
 
 import com.google.gson.reflect.TypeToken;
 import io.swagger.client.*;
+import io.swagger.client.constants.Constants;
 import io.swagger.client.model.details.ProfitLossRequest;
 import io.swagger.client.model.details.ProfitLossSuccess;
 
@@ -12,13 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportApi {
+    private final Constants constants;
     private ApiClient apiClient;
 
-    public ReportApi() {
-        this(Configuration.getDefaultApiClient());
+    public ReportApi(Constants constants) {
+        this(constants, Configuration.getDefaultApiClient());
     }
 
-    public ReportApi(ApiClient apiClient) {
+    public ReportApi(Constants constants, ApiClient apiClient) {
+        this.constants = constants;
         this.apiClient = apiClient;
     }
 
@@ -32,16 +35,19 @@ public class ReportApi {
 
     /**
      * Build call for profitLossReport
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call profitLossReportCall(ProfitLossRequest body, String authorization, String apiKey) throws ApiException {
+    public com.squareup.okhttp.Call profitLossReportCall(ProfitLossRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
 
         // create path and map variables
-        String localVarPath = "/trade/v1/profit-loss-report";
+        String localVarPath = constants.getEndPoints().get("c");
+
+        apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -55,22 +61,22 @@ public class ReportApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, (Object) body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call profitLossReportValidateBeforeCall(ProfitLossRequest body, String authorization, String apiKey) throws ApiException {
+    private com.squareup.okhttp.Call profitLossReportValidateBeforeCall(ProfitLossRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling profitLossReport(Async)");
@@ -84,35 +90,36 @@ public class ReportApi {
             throw new ApiException("Missing the required parameter 'apiKey' when calling profitLossReport(Async)");
         }
 
-        return profitLossReportCall(body, authorization, apiKey);
+        return profitLossReportCall(body, authorization, apiKey, propertiesMap);
     }
 
     /**
      * ProfitLossReportAPI
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return ProfitLossSuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ProfitLossSuccess profitLossReport(ProfitLossRequest body, String authorization, String apiKey) throws ApiException {
-        ApiResponse<ProfitLossSuccess> resp = profitLossReportWithHttpInfo(body, authorization, apiKey);
+    public ProfitLossSuccess profitLossReport(ProfitLossRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<ProfitLossSuccess> resp = profitLossReportWithHttpInfo(body, authorization, apiKey, propertiesMap);
         return resp.getData();
     }
 
     /**
      * ProfitLossReportAPI
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return ApiResponse&lt;ProfitLossSuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ProfitLossSuccess> profitLossReportWithHttpInfo(ProfitLossRequest body, String authorization, String apiKey) throws ApiException {
-        com.squareup.okhttp.Call call = profitLossReportValidateBeforeCall(body, authorization, apiKey);
-        Type localVarReturnType = new TypeToken<ProfitLossSuccess>(){}.getType();
+    public ApiResponse<ProfitLossSuccess> profitLossReportWithHttpInfo(ProfitLossRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = profitLossReportValidateBeforeCall(body, authorization, apiKey, propertiesMap);
+        Type localVarReturnType = new TypeToken<ProfitLossSuccess>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

@@ -35,10 +35,11 @@ public class OrderControllerApi {
 
     /**
      * Build call for brokerageCharges
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param userId                  (required)
+     * @param source                  (required)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -65,35 +66,35 @@ public class OrderControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     private com.squareup.okhttp.Call brokerageChargesValidateBeforeCall(BrokerageChargeRequest body, Map<String, String> propertiesMap, String userId, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -114,8 +115,9 @@ public class OrderControllerApi {
     /**
      * Brokerage Charges
      * This endpoint allows users to get broker charges
-     * @param body  (required)
-     * @param userId  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
      * @return BrokerageChargeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -127,24 +129,27 @@ public class OrderControllerApi {
     /**
      * Brokerage Charges
      * This endpoint allows users to get broker charges
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;BrokerageChargeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     private ApiResponse<BrokerageChargeResponse> brokerageChargesWithHttpInfo(BrokerageChargeRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = brokerageChargesValidateBeforeCall(body, propertiesMap, userId, source, null, null);
-        Type localVarReturnType = new TypeToken<BrokerageChargeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<BrokerageChargeResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for cancelOrder
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param userId                  (required)
+     * @param source                  (required)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -171,19 +176,19 @@ public class OrderControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -207,9 +212,10 @@ public class OrderControllerApi {
     /**
      * Cancel Order
      * This endpoint allows users to cancel a pending order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return CancelOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -221,24 +227,27 @@ public class OrderControllerApi {
     /**
      * Cancel Order
      * This endpoint allows users to cancel a pending order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;CancelOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<CancelOrderResponse> cancelOrderWithHttpInfo(CancelOrderRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = cancelOrderValidateBeforeCall(body, propertiesMap, userId, source, null, null);
-        Type localVarReturnType = new TypeToken<CancelOrderResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CancelOrderResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for exitOrder
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param userId                  (required)
+     * @param source                  (required)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -266,30 +275,30 @@ public class OrderControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -313,9 +322,10 @@ public class OrderControllerApi {
     /**
      * Exit an Order
      * This endpoint allow user to exit an order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ExitOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -327,24 +337,27 @@ public class OrderControllerApi {
     /**
      * Exit an Order
      * This endpoint allow user to exit an order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;ExitOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ExitOrderResponse> exitOrderWithHttpInfo(ExitOrderRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = exitOrderValidateBeforeCall(body, propertiesMap, userId, source, null, null);
-        Type localVarReturnType = new TypeToken<ExitOrderResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExitOrderResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for modifyOrder
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param userId                  (required)
+     * @param source                  (required)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -372,32 +385,32 @@ public class OrderControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -421,9 +434,10 @@ public class OrderControllerApi {
     /**
      * Modify Order
      * This endpoint allows users to modify a pending order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ModifyOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -435,24 +449,27 @@ public class OrderControllerApi {
     /**
      * Modify Order
      * This endpoint allows users to modify a pending order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;ModifyOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ModifyOrderResponse> modifyOrderWithHttpInfo(ModifyOrderRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = modifyOrderValidateBeforeCall(body, propertiesMap, userId, source, null, null);
-        Type localVarReturnType = new TypeToken<ModifyOrderResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<ModifyOrderResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for placeOrder
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param userId                  (required)
+     * @param source                  (required)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -480,31 +497,31 @@ public class OrderControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
                 public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -528,9 +545,10 @@ public class OrderControllerApi {
     /**
      * Place Order
      * This endpoint allow user to place an order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return PlaceOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -544,15 +562,17 @@ public class OrderControllerApi {
     /**
      * Place Order
      * This endpoint allow user to place an order
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;PlaceOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PlaceOrderResponse> placeOrderWithHttpInfo(PlaceOrderRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = placeOrderValidateBeforeCall(body, propertiesMap, userId, source, null, null);
-        Type localVarReturnType = new TypeToken<PlaceOrderResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<PlaceOrderResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

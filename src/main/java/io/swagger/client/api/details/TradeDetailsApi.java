@@ -43,9 +43,10 @@ public class TradeDetailsApi {
 
     /**
      * Build call for orderDetails
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -68,21 +69,21 @@ public class TradeDetailsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
-    
+
     private com.squareup.okhttp.Call orderDetailsValidateBeforeCall(TradeDetailsRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -102,10 +103,10 @@ public class TradeDetailsApi {
 
     /**
      * OrderDetailsAPI
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return TradeDetailsSuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -116,24 +117,26 @@ public class TradeDetailsApi {
 
     /**
      * OrderDetailsAPI
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return ApiResponse&lt;TradeDetailsSuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TradeDetailsSuccess> orderDetailsWithHttpInfo(TradeDetailsRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
         com.squareup.okhttp.Call call = orderDetailsValidateBeforeCall(body, authorization, apiKey, propertiesMap);
-        Type localVarReturnType = new TypeToken<TradeDetailsSuccess>(){}.getType();
+        Type localVarReturnType = new TypeToken<TradeDetailsSuccess>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
-    
+
     /**
      * Build call for orderHistory
-     * @param authorization  (required)
-     * @param apiKey  (required)
-     * @param body  (optional)
+     *
+     * @param authorization (required)
+     * @param apiKey        (required)
+     * @param body          (optional)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -156,21 +159,21 @@ public class TradeDetailsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
-    
+
     private com.squareup.okhttp.Call orderHistoryValidateBeforeCall(String authorization, String apiKey, OrderHistoryRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
@@ -186,10 +189,10 @@ public class TradeDetailsApi {
 
     /**
      * Order History API
-     * 
-     * @param authorization  (required)
-     * @param apiKey  (required)
-     * @param body  (optional)
+     *
+     * @param authorization (required)
+     * @param apiKey        (required)
+     * @param body          (optional)
      * @return OrderHistorySuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -200,24 +203,26 @@ public class TradeDetailsApi {
 
     /**
      * Order History API
-     * 
-     * @param authorization  (required)
-     * @param apiKey  (required)
-     * @param body  (optional)
+     *
+     * @param authorization (required)
+     * @param apiKey        (required)
+     * @param body          (optional)
      * @return ApiResponse&lt;OrderHistorySuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OrderHistorySuccess> orderHistoryWithHttpInfo(String authorization, String apiKey, OrderHistoryRequest body, Map<String, String> propertiesMap) throws ApiException {
         com.squareup.okhttp.Call call = orderHistoryValidateBeforeCall(authorization, apiKey, body, propertiesMap);
-        Type localVarReturnType = new TypeToken<OrderHistorySuccess>(){}.getType();
+        Type localVarReturnType = new TypeToken<OrderHistorySuccess>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
-    
+
     /**
      * Build call for tradeDetailsUsingOrderId
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -240,21 +245,21 @@ public class TradeDetailsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
-    
+
     private com.squareup.okhttp.Call tradeDetailsUsingOrderIdValidateBeforeCall(TradeDetailsRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -274,10 +279,10 @@ public class TradeDetailsApi {
 
     /**
      * TradeDetails Using OrderId API
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return TradeDetailsSuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -288,16 +293,17 @@ public class TradeDetailsApi {
 
     /**
      * TradeDetails Using OrderId API
-     * 
-     * @param body  (required)
-     * @param authorization  (required)
-     * @param apiKey  (required)
+     *
+     * @param body          (required)
+     * @param authorization (required)
+     * @param apiKey        (required)
      * @return ApiResponse&lt;TradeDetailsSuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TradeDetailsSuccess> tradeDetailsUsingOrderIdWithHttpInfo(TradeDetailsRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
         com.squareup.okhttp.Call call = tradeDetailsUsingOrderIdValidateBeforeCall(body, authorization, apiKey, propertiesMap);
-        Type localVarReturnType = new TypeToken<TradeDetailsSuccess>(){}.getType();
+        Type localVarReturnType = new TypeToken<TradeDetailsSuccess>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

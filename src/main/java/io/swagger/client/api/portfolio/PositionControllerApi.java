@@ -34,9 +34,10 @@ public class PositionControllerApi {
 
     /**
      * Build call for convertPosition
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -64,19 +65,19 @@ public class PositionControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -100,9 +101,10 @@ public class PositionControllerApi {
     /**
      * Position Conversion
      * This endpoint allow user to convert positions
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return PositionConversionResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -114,22 +116,25 @@ public class PositionControllerApi {
     /**
      * Position Conversion
      * This endpoint allow user to convert positions
-     * @param body  (required)
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param body   (required)
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;PositionConversionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PositionConversionResponse> convertPositionWithHttpInfo(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         com.squareup.okhttp.Call call = convertPositionValidateBeforeCall(body, propertiesMap, userId, source);
-        Type localVarReturnType = new TypeToken<PositionConversionResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<PositionConversionResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for doHoldings
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -156,19 +161,19 @@ public class PositionControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -188,8 +193,9 @@ public class PositionControllerApi {
     /**
      * Holdings
      * This endpoint allow user to view holdings
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return HoldingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -201,21 +207,24 @@ public class PositionControllerApi {
     /**
      * Holdings
      * This endpoint allow user to view holdings
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;HoldingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<HoldingResponse> doHoldingsWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         com.squareup.okhttp.Call call = doHoldingsValidateBeforeCall(userId, propertiesMap, source);
-        Type localVarReturnType = new TypeToken<HoldingResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<HoldingResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for getPositionBook
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -241,19 +250,19 @@ public class PositionControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", queryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -273,8 +282,9 @@ public class PositionControllerApi {
     /**
      * Position Book
      * This endpoint allow user to view positions
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return PositionBookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -286,14 +296,16 @@ public class PositionControllerApi {
     /**
      * Position Book
      * This endpoint allow user to view positions
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;PositionBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PositionBookResponse> getPositionBookWithHttpInfo(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         com.squareup.okhttp.Call call = getPositionBookValidateBeforeCall(queryParams, userId, propertiesMap, source);
-        Type localVarReturnType = new TypeToken<PositionBookResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<PositionBookResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

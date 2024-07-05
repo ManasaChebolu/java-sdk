@@ -59,19 +59,19 @@ public class LoginApi {
         Map<String, Object> localVarFormParams = new HashMap<>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.put("api-key", apiKey);
 
-        String[] localVarAuthNames = new String[] { "" };
+        String[] localVarAuthNames = new String[]{""};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -87,7 +87,8 @@ public class LoginApi {
     /**
      * User Login
      * Endpoint to authenticate users
-     * @param body  (required)
+     *
+     * @param body (required)
      * @return LoginResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -103,7 +104,8 @@ public class LoginApi {
     /**
      * User Login
      * Endpoint to authenticate users
-     * @param body  (required)
+     *
+     * @param body (required)
      * @return ApiResponse&lt;InlineResponse200&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -113,7 +115,8 @@ public class LoginApi {
             String apiKey
     ) throws ApiException {
         Call call = loginPostValidateBeforeCall(body, propertiesMap, apiKey);
-        Type localVarReturnType = new TypeToken<LoginResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<LoginResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

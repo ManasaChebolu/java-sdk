@@ -34,8 +34,9 @@ public class TradeBookApi {
 
     /**
      * Build call for getOrderBook
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
@@ -62,19 +63,19 @@ public class TradeBookApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -94,8 +95,9 @@ public class TradeBookApi {
     /**
      * Get orders
      * This endpoint allows users view orders
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return OrderBookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -107,27 +109,30 @@ public class TradeBookApi {
     /**
      * Get orders
      * This endpoint allows users view orders
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;OrderBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OrderBookResponse> getOrderBookWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         com.squareup.okhttp.Call call = getOrderBookValidateBeforeCall(userId, propertiesMap, source);
-        Type localVarReturnType = new TypeToken<OrderBookResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<OrderBookResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Build call for tradeBook
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
     public com.squareup.okhttp.Call tradeBookCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("tradeBook");
 
@@ -150,19 +155,19 @@ public class TradeBookApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.putAll(constants.getHeaders());
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -182,8 +187,9 @@ public class TradeBookApi {
     /**
      * Trades
      * This endpoint allows users to view trades
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return TradeBookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -195,14 +201,16 @@ public class TradeBookApi {
     /**
      * Trades
      * This endpoint allows users to view trades
-     * @param userId  (required)
-     * @param source  (required)
+     *
+     * @param userId (required)
+     * @param source (required)
      * @return ApiResponse&lt;TradeBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TradeBookResponse> tradeBookWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         com.squareup.okhttp.Call call = tradeBookValidateBeforeCall(userId, propertiesMap, source);
-        Type localVarReturnType = new TypeToken<TradeBookResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<TradeBookResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 }

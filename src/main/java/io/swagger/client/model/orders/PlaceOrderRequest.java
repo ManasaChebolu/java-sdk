@@ -887,26 +887,26 @@ public class PlaceOrderRequest {
         StringBuilder sb = new StringBuilder();
         sb.append("class PlaceOrderRequest {\n");
 
-      sb.append("symbol: ").append(toIndentedString(symbol)).append("\n");
-      sb.append("exc: ").append(toIndentedString(exc)).append("\n");
-      sb.append("ordAction: ").append(toIndentedString(ordAction)).append("\n");
-      sb.append("ordValidity: ").append(toIndentedString(ordValidity)).append("\n");
-      sb.append("ordType: ").append(toIndentedString(ordType)).append("\n");
-      sb.append("prdType: ").append(toIndentedString(prdType)).append("\n");
-      sb.append("qty: ").append(toIndentedString(qty)).append("\n");
-      sb.append("disQty: ").append(toIndentedString(disQty)).append("\n");
-      sb.append("lotSize: ").append(toIndentedString(lotSize)).append("\n");
-      sb.append("triggerPrice: ").append(toIndentedString(triggerPrice)).append("\n");
-      sb.append("instrument: ").append(toIndentedString(instrument)).append("\n");
-      sb.append("limitPrice: ").append(toIndentedString(limitPrice)).append("\n");
-      sb.append("amo: ").append(toIndentedString(amo)).append("\n");
-      sb.append("build: ").append(toIndentedString(build)).append("\n");
-      sb.append("excToken: ").append(toIndentedString(excToken)).append("\n");
-      sb.append("boStpLoss: ").append(toIndentedString(boStpLoss)).append("\n");
-      sb.append("boTgtPrice: ").append(toIndentedString(boTgtPrice)).append("\n");
-      sb.append("trailingSL: ").append(toIndentedString(trailingSL)).append("\n");
-      sb.append("}");
-      return sb.toString();
+        sb.append("symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("exc: ").append(toIndentedString(exc)).append("\n");
+        sb.append("ordAction: ").append(toIndentedString(ordAction)).append("\n");
+        sb.append("ordValidity: ").append(toIndentedString(ordValidity)).append("\n");
+        sb.append("ordType: ").append(toIndentedString(ordType)).append("\n");
+        sb.append("prdType: ").append(toIndentedString(prdType)).append("\n");
+        sb.append("qty: ").append(toIndentedString(qty)).append("\n");
+        sb.append("disQty: ").append(toIndentedString(disQty)).append("\n");
+        sb.append("lotSize: ").append(toIndentedString(lotSize)).append("\n");
+        sb.append("triggerPrice: ").append(toIndentedString(triggerPrice)).append("\n");
+        sb.append("instrument: ").append(toIndentedString(instrument)).append("\n");
+        sb.append("limitPrice: ").append(toIndentedString(limitPrice)).append("\n");
+        sb.append("amo: ").append(toIndentedString(amo)).append("\n");
+        sb.append("build: ").append(toIndentedString(build)).append("\n");
+        sb.append("excToken: ").append(toIndentedString(excToken)).append("\n");
+        sb.append("boStpLoss: ").append(toIndentedString(boStpLoss)).append("\n");
+        sb.append("boTgtPrice: ").append(toIndentedString(boTgtPrice)).append("\n");
+        sb.append("trailingSL: ").append(toIndentedString(trailingSL)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
 
     /**

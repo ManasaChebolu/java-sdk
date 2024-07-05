@@ -8,6 +8,7 @@ import java.util.Map;
 public class Constants implements ConstantsInterface {
     public Map<String, String> headers = new HashMap<>();
     public String apiKey = "";
+
     public Map<String, String> getHeaders() {
         if (!getApiKey().isEmpty() && !getAuthString().isEmpty()) {
             this.headers.put("api-key", getApiKey());
@@ -21,6 +22,7 @@ public class Constants implements ConstantsInterface {
     }
 
     public Map<String, String> endPoints = new HashMap<>();
+
     public Map<String, String> getEndPoints() {
         return endPoints;
     }
@@ -45,11 +47,17 @@ public class Constants implements ConstantsInterface {
 
     public Constants() {
         // End Points
-        this.endPoints.put("exitOrder", "/orderApi/v1/exit-order");
+        this.endPoints.put("exitOrder", "/wrapper-order-service/api/order/v1/exit-order");
+        this.endPoints.put("convertPosition", "/wrapper-order-service/api/portfolio/v1/convert-positions");
+        this.endPoints.put("doHoldings", "/wrapper-details-service/api/portfolio/v1/holdings");
 
-        this.endPoints.put("convertPosition", "/detailsApi/portfolio/v1/convert-positions");
-        this.endPoints.put("doHoldings", "/detailsApi/portfolio/v1/holdings");
-
+        this.endPoints.put("historicalData", "/wrapper-details-service/api/chart/v1/historical-candle-data");
+        this.endPoints.put("intradayData", "/wrapper-details-service/api/chart/v1/intraday-candle-data");
+        this.endPoints.put("sparkline", "/wrapper-details-service/api/quote/v1/get-ohlc");
+        this.endPoints.put("funds", "/wrapper-details-service/api/funds/v1/get-funds");
+        this.endPoints.put("getProfile", "/wrapper-details-service/api/user/v1/get-profile");
+        this.endPoints.put("quotes", "/wrapper-details-service/api/market/v1/quote");
+        this.endPoints.put("profitLoss", "/wrapper-details-service/api/trade/v1/profit-loss-report");
 
         // done
         this.endPoints.put("login", "/auth-services/api/auth/v1/login");
