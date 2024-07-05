@@ -5,7 +5,6 @@ import io.swagger.client.*;
 import io.swagger.client.constants.Constants;
 import io.swagger.client.model.portfolio.*;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,12 +37,10 @@ public class PositionControllerApi {
      * @param body  (required)
      * @param userId  (required)
      * @param source  (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call convertPositionCall(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call convertPositionCall(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("convertPosition");
@@ -77,24 +74,13 @@ public class PositionControllerApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call convertPositionValidateBeforeCall(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call convertPositionValidateBeforeCall(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling convertPosition(Async)");
@@ -108,7 +94,7 @@ public class PositionControllerApi {
             throw new ApiException("Missing the required parameter 'source' when calling convertPosition(Async)");
         }
 
-        return convertPositionCall(body, propertiesMap, userId, source, progressListener, progressRequestListener);
+        return convertPositionCall(body, propertiesMap, userId, source);
     }
 
     /**
@@ -135,7 +121,7 @@ public class PositionControllerApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PositionConversionResponse> convertPositionWithHttpInfo(PositionConversionRequest body, Map<String, String> propertiesMap, String userId, String source) throws ApiException {
-        com.squareup.okhttp.Call call = convertPositionValidateBeforeCall(body, propertiesMap, userId, source, null, null);
+        com.squareup.okhttp.Call call = convertPositionValidateBeforeCall(body, propertiesMap, userId, source);
         Type localVarReturnType = new TypeToken<PositionConversionResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -144,14 +130,10 @@ public class PositionControllerApi {
      * Build call for doHoldings
      * @param userId  (required)
      * @param source  (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call doHoldingsCall(String userId, Map<String, String> propertiesMap, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
+    public com.squareup.okhttp.Call doHoldingsCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("doHoldings");
 
@@ -184,24 +166,13 @@ public class PositionControllerApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call doHoldingsValidateBeforeCall(String userId, Map<String, String> propertiesMap, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call doHoldingsValidateBeforeCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         // verify the required parameter 'userId' is set
         if (userId == null) {
             throw new ApiException("Missing the required parameter 'userId' when calling doHoldings(Async)");
@@ -211,7 +182,7 @@ public class PositionControllerApi {
             throw new ApiException("Missing the required parameter 'source' when calling doHoldings(Async)");
         }
 
-        return doHoldingsCall(userId, propertiesMap, source, progressListener, progressRequestListener);
+        return doHoldingsCall(userId, propertiesMap, source);
     }
 
     /**
@@ -236,7 +207,7 @@ public class PositionControllerApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<HoldingResponse> doHoldingsWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        com.squareup.okhttp.Call call = doHoldingsValidateBeforeCall(userId, propertiesMap, source, null, null);
+        com.squareup.okhttp.Call call = doHoldingsValidateBeforeCall(userId, propertiesMap, source);
         Type localVarReturnType = new TypeToken<HoldingResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -245,16 +216,12 @@ public class PositionControllerApi {
      * Build call for getPositionBook
      * @param userId  (required)
      * @param source  (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getPositionBookCall(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
+    public com.squareup.okhttp.Call getPositionBookCall(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         // create path and map variables
-        String localVarPath = constants.getEndPoints().get("getPositionBook");
+        String localVarPath = constants.getEndPoints().get("positionBook");
 
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
@@ -284,24 +251,13 @@ public class PositionControllerApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", queryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "GET", queryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call getPositionBookValidateBeforeCall(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getPositionBookValidateBeforeCall(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source) throws ApiException {
         // verify the required parameter 'userId' is set
         if (userId == null) {
             throw new ApiException("Missing the required parameter 'userId' when calling getPositionBook(Async)");
@@ -311,7 +267,7 @@ public class PositionControllerApi {
             throw new ApiException("Missing the required parameter 'source' when calling getPositionBook(Async)");
         }
 
-        return getPositionBookCall(queryParams, userId, propertiesMap, source, progressListener, progressRequestListener);
+        return getPositionBookCall(queryParams, userId, propertiesMap, source);
     }
 
     /**
@@ -336,7 +292,7 @@ public class PositionControllerApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PositionBookResponse> getPositionBookWithHttpInfo(List<Pair> queryParams, String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        com.squareup.okhttp.Call call = getPositionBookValidateBeforeCall(queryParams, userId, propertiesMap, source, null, null);
+        com.squareup.okhttp.Call call = getPositionBookValidateBeforeCall(queryParams, userId, propertiesMap, source);
         Type localVarReturnType = new TypeToken<PositionBookResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }

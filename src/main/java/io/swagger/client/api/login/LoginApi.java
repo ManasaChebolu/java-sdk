@@ -40,12 +40,12 @@ public class LoginApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private Call loginPostCall(LoginBody body, Map<String, String> propertiesMap) throws ApiException {
+    private Call loginPostCall(LoginBody body, Map<String, String> propertiesMap, String apiKey) throws ApiException {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("login");
 
-        apiClient.setBasePath("https://training-apiconnect.nitroxp.com");
+        apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (apiClient.getBasePath() == null) {
             throw new ApiException("Properties file issue");
@@ -69,18 +69,19 @@ public class LoginApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.put("api-key", apiKey);
 
         String[] localVarAuthNames = new String[] { "" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private Call loginPostValidateBeforeCall(LoginBody body, Map<String, String> propertiesMap) throws ApiException {
+    private Call loginPostValidateBeforeCall(LoginBody body, Map<String, String> propertiesMap, String apiKey) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling authApiV1LoginNormalLoginPost(Async)");
         }
 
-        return loginPostCall(body, propertiesMap);
+        return loginPostCall(body, propertiesMap, apiKey);
     }
 
     /**
@@ -92,9 +93,10 @@ public class LoginApi {
      */
     public LoginResponse loginPost(
             LoginBody body,
-            Map<String, String> propertiesMap
+            Map<String, String> propertiesMap,
+            String apiKey
     ) throws ApiException {
-        ApiResponse<LoginResponse> resp = loginPostWithHttpInfo(body, propertiesMap);
+        ApiResponse<LoginResponse> resp = loginPostWithHttpInfo(body, propertiesMap, apiKey);
         return resp.getData();
     }
 
@@ -107,9 +109,10 @@ public class LoginApi {
      */
     private ApiResponse<LoginResponse> loginPostWithHttpInfo(
             LoginBody body,
-            Map<String, String> propertiesMap
+            Map<String, String> propertiesMap,
+            String apiKey
     ) throws ApiException {
-        Call call = loginPostValidateBeforeCall(body, propertiesMap);
+        Call call = loginPostValidateBeforeCall(body, propertiesMap, apiKey);
         Type localVarReturnType = new TypeToken<LoginResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }

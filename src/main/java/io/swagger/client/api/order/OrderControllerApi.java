@@ -47,7 +47,6 @@ public class OrderControllerApi {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("brokerageCharges");
 
-        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (localVarPath == null || apiClient.getBasePath() == null) {
@@ -154,7 +153,6 @@ public class OrderControllerApi {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("cancelOrder");
 
-        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (localVarPath == null || apiClient.getBasePath() == null) {
@@ -183,18 +181,7 @@ public class OrderControllerApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
@@ -261,7 +248,6 @@ public class OrderControllerApi {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("exitOrder");
 
-        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (localVarPath == null || apiClient.getBasePath() == null) {
@@ -368,7 +354,6 @@ public class OrderControllerApi {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("modifyOrder");
 
-        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (localVarPath == null || apiClient.getBasePath() == null) {
@@ -476,7 +461,6 @@ public class OrderControllerApi {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("placeOrder");
 
-        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (localVarPath == null || apiClient.getBasePath() == null) {

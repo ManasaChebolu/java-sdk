@@ -800,9 +800,6 @@ public class ApiClient {
         try {
             Response response = call.execute();
             T data = handleResponse(response, returnType);
-            System.out.println("response: "+response);
-            System.out.println("response body: "+ response.body().toString());
-            System.out.println("data: "+data);
             return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
         } catch (IOException e) {
             throw new ApiException(e);
