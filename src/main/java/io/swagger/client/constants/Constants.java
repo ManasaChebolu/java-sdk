@@ -59,6 +59,10 @@ public class Constants implements ConstantsInterface {
         this.endPoints.put("quotes", "/wrapper-details-service/api/market/v1/quote");
         this.endPoints.put("profitLoss", "/wrapper-details-service/api/trade/v1/profit-loss-report");
 
+        this.endPoints.put("orderDetails", "/wrapper-details-service/api/order/v1/order-details");
+        this.endPoints.put("orderHistory", "/wrapper-details-service/api/order/v1/order-history");
+        this.endPoints.put("tradeDetails", "/wrapper-details-service/api/order/v1/trade-details");
+
         // done
         this.endPoints.put("login", "/auth-services/api/auth/v1/login");
 

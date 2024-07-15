@@ -37,12 +37,10 @@ public class MarketDataApi {
      * Build call for getQuote
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getQuoteCall(QuotesRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    public com.squareup.okhttp.Call getQuoteCall(QuotesRequest body, Map<String, String> propertiesMap) throws ApiException {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("quotes");
@@ -53,10 +51,6 @@ public class MarketDataApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (apiKey != null)
-            localVarHeaderParams.put("api-key", apiClient.parameterToString(apiKey));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -71,39 +65,30 @@ public class MarketDataApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call getQuoteValidateBeforeCall(QuotesRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    private com.squareup.okhttp.Call getQuoteValidateBeforeCall(QuotesRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getQuote(Async)");
         }
-        // verify the required parameter 'authorization' is set
-        if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling getQuote(Async)");
-        }
-        // verify the required parameter 'apiKey' is set
-        if (apiKey == null) {
-            throw new ApiException("Missing the required parameter 'apiKey' when calling getQuote(Async)");
-        }
 
-        return getQuoteCall(body, authorization, apiKey, propertiesMap);
+        return getQuoteCall(body, propertiesMap);
     }
 
     /**
      * GetQuoteAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return QuotesSuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public QuotesSuccess getQuote(QuotesRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        ApiResponse<QuotesSuccess> resp = getQuoteWithHttpInfo(body, authorization, apiKey, propertiesMap);
+    public QuotesSuccess getQuote(QuotesRequest body, Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<QuotesSuccess> resp = getQuoteWithHttpInfo(body, propertiesMap);
         return resp.getData();
     }
 
@@ -111,13 +96,11 @@ public class MarketDataApi {
      * GetQuoteAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return ApiResponse&lt;QuotesSuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<QuotesSuccess> getQuoteWithHttpInfo(QuotesRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        com.squareup.okhttp.Call call = getQuoteValidateBeforeCall(body, authorization, apiKey, propertiesMap);
+    public ApiResponse<QuotesSuccess> getQuoteWithHttpInfo(QuotesRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = getQuoteValidateBeforeCall(body, propertiesMap);
         Type localVarReturnType = new TypeToken<QuotesSuccess>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);

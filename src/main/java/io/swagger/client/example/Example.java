@@ -59,15 +59,15 @@ public class Example {
         body.setUserId("DBG101");
         body.setMobileNumber("7305989193");
 
-        String apiKey = "vFP4PGYvD19qhJ67wR";
+        constants.setApiKey("vFP4PGYvD19qhJ67wR");
 
-        LoginResponse loginResponse = defaultAPI.loginPost(body, properties, apiKey);
+        LoginResponse loginResponse = defaultAPI.loginPost(body, properties, constants.apiKey);
 
         System.out.println("response: " + loginResponse);
         String accessToken = loginResponse.getData().getAccessToken();
 
         constants.setAuthString(accessToken);
-        constants.setApiKey(apiKey);
+
     }
 
     public void placeOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {

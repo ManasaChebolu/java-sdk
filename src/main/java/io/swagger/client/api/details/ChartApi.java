@@ -35,8 +35,6 @@ public class ChartApi {
     /**
      * Build call for historicalData
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @param symbol        (required)
      * @param resolution    (required)
      * @param from          (required)
@@ -46,7 +44,7 @@ public class ChartApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call historicalDataCall(String authorization, String apiKey, String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
+    public com.squareup.okhttp.Call historicalDataCall(String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("historicalData");
 
@@ -70,10 +68,6 @@ public class ChartApi {
             localVarQueryParams.addAll(apiClient.parameterToPair("streamSymbol", streamSymbol));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (apiKey != null)
-            localVarHeaderParams.put("api-key", apiClient.parameterToString(apiKey));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -88,20 +82,13 @@ public class ChartApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call historicalDataValidateBeforeCall(String authorization, String apiKey, String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
-        // verify the required parameter 'authorization' is set
-        if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling historicalData(Async)");
-        }
-        // verify the required parameter 'apiKey' is set
-        if (apiKey == null) {
-            throw new ApiException("Missing the required parameter 'apiKey' when calling historicalData(Async)");
-        }
+    private com.squareup.okhttp.Call historicalDataValidateBeforeCall(String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
             throw new ApiException("Missing the required parameter 'symbol' when calling historicalData(Async)");
@@ -131,14 +118,12 @@ public class ChartApi {
             throw new ApiException("Missing the required parameter 'streamSymbol' when calling historicalData(Async)");
         }
 
-        return historicalDataCall(authorization, apiKey, symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
+        return historicalDataCall(symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
     }
 
     /**
      * HistoricalDataAPI
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @param symbol        (required)
      * @param resolution    (required)
      * @param from          (required)
@@ -148,16 +133,23 @@ public class ChartApi {
      * @return HistorySuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public HistorySuccess historicalData(String authorization, String apiKey, String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
-        ApiResponse<HistorySuccess> resp = historicalDataWithHttpInfo(authorization, apiKey, symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
+    public HistorySuccess historicalData(
+            String symbol,
+            String resolution,
+            String from,
+            String to,
+            String countback,
+            String exc,
+            String streamSymbol,
+            Map<String, String> propertiesMap
+    ) throws ApiException {
+        ApiResponse<HistorySuccess> resp = historicalDataWithHttpInfo(symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
         return resp.getData();
     }
 
     /**
      * HistoricalDataAPI
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @param symbol        (required)
      * @param resolution    (required)
      * @param from          (required)
@@ -167,8 +159,8 @@ public class ChartApi {
      * @return ApiResponse&lt;HistorySuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<HistorySuccess> historicalDataWithHttpInfo(String authorization, String apiKey, String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
-        com.squareup.okhttp.Call call = historicalDataValidateBeforeCall(authorization, apiKey, symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
+    public ApiResponse<HistorySuccess> historicalDataWithHttpInfo(String symbol, String resolution, String from, String to, String countback, String exc, String streamSymbol, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = historicalDataValidateBeforeCall(symbol, resolution, from, to, countback, exc, streamSymbol, propertiesMap);
         Type localVarReturnType = new TypeToken<HistorySuccess>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -178,12 +170,10 @@ public class ChartApi {
      * Build call for intraday
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call intradayCall(IntradayRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    public com.squareup.okhttp.Call intradayCall(IntradayRequest body, Map<String, String> propertiesMap) throws ApiException {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("intradayData");
@@ -194,10 +184,6 @@ public class ChartApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (apiKey != null)
-            localVarHeaderParams.put("api-key", apiClient.parameterToString(apiKey));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -212,39 +198,30 @@ public class ChartApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call intradayValidateBeforeCall(IntradayRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    private com.squareup.okhttp.Call intradayValidateBeforeCall(IntradayRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling intraday(Async)");
         }
-        // verify the required parameter 'authorization' is set
-        if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling intraday(Async)");
-        }
-        // verify the required parameter 'apiKey' is set
-        if (apiKey == null) {
-            throw new ApiException("Missing the required parameter 'apiKey' when calling intraday(Async)");
-        }
 
-        return intradayCall(body, authorization, apiKey, propertiesMap);
+        return intradayCall(body, propertiesMap);
     }
 
     /**
      * IntradayAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return IntradaySuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public IntradaySuccess intraday(IntradayRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        ApiResponse<IntradaySuccess> resp = intradayWithHttpInfo(body, authorization, apiKey, propertiesMap);
+    public IntradaySuccess intraday(IntradayRequest body, Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<IntradaySuccess> resp = intradayWithHttpInfo(body, propertiesMap);
         return resp.getData();
     }
 
@@ -252,13 +229,11 @@ public class ChartApi {
      * IntradayAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return ApiResponse&lt;IntradaySuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<IntradaySuccess> intradayWithHttpInfo(IntradayRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        com.squareup.okhttp.Call call = intradayValidateBeforeCall(body, authorization, apiKey, propertiesMap);
+    public ApiResponse<IntradaySuccess> intradayWithHttpInfo(IntradayRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = intradayValidateBeforeCall(body, propertiesMap);
         Type localVarReturnType = new TypeToken<IntradaySuccess>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -268,12 +243,10 @@ public class ChartApi {
      * Build call for sparkLine
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call sparkLineCall(SparklineRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    public com.squareup.okhttp.Call sparkLineCall(SparklineRequest body, Map<String, String> propertiesMap) throws ApiException {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("sparkline");
@@ -284,10 +257,6 @@ public class ChartApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (apiKey != null)
-            localVarHeaderParams.put("api-key", apiClient.parameterToString(apiKey));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -302,39 +271,30 @@ public class ChartApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call sparkLineValidateBeforeCall(SparklineRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    private com.squareup.okhttp.Call sparkLineValidateBeforeCall(SparklineRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling sparkLine(Async)");
         }
-        // verify the required parameter 'authorization' is set
-        if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling sparkLine(Async)");
-        }
-        // verify the required parameter 'apiKey' is set
-        if (apiKey == null) {
-            throw new ApiException("Missing the required parameter 'apiKey' when calling sparkLine(Async)");
-        }
 
-        return sparkLineCall(body, authorization, apiKey, propertiesMap);
+        return sparkLineCall(body, propertiesMap);
     }
 
     /**
      * SparkLineAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return SparklineResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SparklineResponse sparkLine(SparklineRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        ApiResponse<SparklineResponse> resp = sparkLineWithHttpInfo(body, authorization, apiKey, propertiesMap);
+    public SparklineResponse sparkLine(SparklineRequest body, Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<SparklineResponse> resp = sparkLineWithHttpInfo(body, propertiesMap);
         return resp.getData();
     }
 
@@ -342,13 +302,11 @@ public class ChartApi {
      * SparkLineAPI
      *
      * @param body          (required)
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return ApiResponse&lt;SparklineResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SparklineResponse> sparkLineWithHttpInfo(SparklineRequest body, String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        com.squareup.okhttp.Call call = sparkLineValidateBeforeCall(body, authorization, apiKey, propertiesMap);
+    public ApiResponse<SparklineResponse> sparkLineWithHttpInfo(SparklineRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = sparkLineValidateBeforeCall(body, propertiesMap);
         Type localVarReturnType = new TypeToken<SparklineResponse>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);

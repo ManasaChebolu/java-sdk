@@ -35,12 +35,10 @@ public class LimitApi {
     /**
      * Build call for fundView
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call fundViewCall(String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
+    public com.squareup.okhttp.Call fundViewCall(Map<String, String> propertiesMap) throws ApiException {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("funds");
 
@@ -50,11 +48,6 @@ public class LimitApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
-        if (apiKey != null)
-            localVarHeaderParams.put("api-key", apiClient.parameterToString(apiKey));
-
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
@@ -68,47 +61,35 @@ public class LimitApi {
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call fundViewValidateBeforeCall(String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        // verify the required parameter 'authorization' is set
-        if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling fundView(Async)");
-        }
-        // verify the required parameter 'apiKey' is set
-        if (apiKey == null) {
-            throw new ApiException("Missing the required parameter 'apiKey' when calling fundView(Async)");
-        }
-
-        return fundViewCall(authorization, apiKey, propertiesMap);
+    private com.squareup.okhttp.Call fundViewValidateBeforeCall(Map<String, String> propertiesMap) throws ApiException {
+        return fundViewCall(propertiesMap);
     }
 
     /**
      * FundViewAPI
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return FundsSuccess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public FundsSuccess fundView(String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        ApiResponse<FundsSuccess> resp = fundViewWithHttpInfo(authorization, apiKey, propertiesMap);
+    public FundsSuccess fundView(Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<FundsSuccess> resp = fundViewWithHttpInfo(propertiesMap);
         return resp.getData();
     }
 
     /**
      * FundViewAPI
      *
-     * @param authorization (required)
-     * @param apiKey        (required)
      * @return ApiResponse&lt;FundsSuccess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<FundsSuccess> fundViewWithHttpInfo(String authorization, String apiKey, Map<String, String> propertiesMap) throws ApiException {
-        com.squareup.okhttp.Call call = fundViewValidateBeforeCall(authorization, apiKey, propertiesMap);
+    public ApiResponse<FundsSuccess> fundViewWithHttpInfo(Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = fundViewValidateBeforeCall(propertiesMap);
         Type localVarReturnType = new TypeToken<FundsSuccess>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
