@@ -55,11 +55,11 @@ public class Example {
 
     public void login(LoginApi defaultAPI, Map<String, String> properties) throws ApiException {
         LoginBody body = new LoginBody();
-        body.setPassword("Akshaya@12");
-        body.setUserId("DBG101");
-        body.setMobileNumber("7305989193");
+        body.setPassword("example@123");
+        body.setUserId("EXAMPLE1");
+        body.setMobileNumber("1234567890");
 
-        constants.setApiKey("vFP4PGYvD19qhJ67wR");
+        constants.setApiKey("SAMPLE_API_KEY");
 
         LoginResponse loginResponse = defaultAPI.loginPost(body, properties, constants.apiKey);
 
