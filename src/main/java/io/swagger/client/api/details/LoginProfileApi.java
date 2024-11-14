@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoginApi {
+public class LoginProfileApi {
     private final Constants constants;
     private ApiClient apiClient;
 
-    public LoginApi(Constants constants) {
+    public LoginProfileApi(Constants constants) {
         this(constants, Configuration.getDefaultApiClient());
     }
 
-    public LoginApi(Constants constants, ApiClient apiClient) {
+    public LoginProfileApi(Constants constants, ApiClient apiClient) {
         this.constants = constants;
         this.apiClient = apiClient;
     }
