@@ -9,7 +9,7 @@ import java.util.Objects;
  * ExitOrderResponse
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
 
 public class ExitOrderResponse {
     @SerializedName("infoID")
@@ -21,8 +21,8 @@ public class ExitOrderResponse {
     @SerializedName("timestamp")
     private Long timestamp = null;
 
-    @SerializedName("data")
-    private ExitOrderData data = null;
+    //@SerializedName("data")
+//    private ExitOrderData data = null;
 
     public ExitOrderResponse infoID(String infoID) {
         this.infoID = infoID;
@@ -81,24 +81,24 @@ public class ExitOrderResponse {
         this.timestamp = timestamp;
     }
 
-    public ExitOrderResponse data(ExitOrderData data) {
-        this.data = data;
-        return this;
-    }
+//    public ExitOrderResponse data(ExitOrderData data) {
+//        this.data = data;
+//        return this;
+//    }
 
     /**
      * Get data
      *
      * @return data
      **/
-    @Schema(description = "")
-    public ExitOrderData getData() {
-        return data;
-    }
-
-    public void setData(ExitOrderData data) {
-        this.data = data;
-    }
+//    @Schema(description = "")
+//    public ExitOrderData getData() {
+//        return data;
+//    }
+//
+//    public void setData(ExitOrderData data) {
+//        this.data = data;
+//    }
 
 
     @Override
@@ -112,14 +112,14 @@ public class ExitOrderResponse {
         ExitOrderResponse exitOrderResponse = (ExitOrderResponse) o;
         return Objects.equals(this.infoID, exitOrderResponse.infoID) &&
                 Objects.equals(this.infoMsg, exitOrderResponse.infoMsg) &&
-                Objects.equals(this.timestamp, exitOrderResponse.timestamp) &&
-                Objects.equals(this.data, exitOrderResponse.data);
+                Objects.equals(this.timestamp, exitOrderResponse.timestamp) ;
+              //  Objects.equals(this.data, exitOrderResponse.data);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(infoID, infoMsg, timestamp, data);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(infoID, infoMsg, timestamp, data);
+//    }
 
 
     @Override
@@ -130,7 +130,7 @@ public class ExitOrderResponse {
         sb.append("infoID: ").append(toIndentedString(infoID)).append("\n");
         sb.append("infoMsg: ").append(toIndentedString(infoMsg)).append("\n");
         sb.append("timestamp: ").append(toIndentedString(timestamp)).append("\n");
-        sb.append("data: ").append(toIndentedString(data)).append("\n");
+        //sb.append("data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();
     }

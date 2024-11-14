@@ -13,6 +13,10 @@ import com.google.gson.reflect.TypeToken;
 import io.swagger.client.constants.Constants;
 import io.swagger.client.model.login.LoginResponse;
 import io.swagger.client.model.login.LoginBody;
+import io.swagger.client.model.login.RefreshTokenRequest;
+import io.swagger.client.model.login.RefreshTokenResponse;
+import io.swagger.client.model.portfolio.OrderTrailRequest;
+import io.swagger.client.model.portfolio.OrderTrailResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -44,7 +48,6 @@ public class LoginApi {
 
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("login");
-
         apiClient.setBasePath(propertiesMap.get("baseURL"));
 
         if (apiClient.getBasePath() == null) {
@@ -70,8 +73,9 @@ public class LoginApi {
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
         localVarHeaderParams.put("api-key", apiKey);
+        localVarHeaderParams.put("source", "javasdk");
 
-        String[] localVarAuthNames = new String[]{""};
+        String[] localVarAuthNames = new String[]{};
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
@@ -119,4 +123,63 @@ public class LoginApi {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
+
+    //RefreshToken
+
+    public RefreshTokenResponse refreshToken(RefreshTokenRequest body, Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<RefreshTokenResponse> resp = refreshTokenWithHttpInfo(body, propertiesMap);
+        return resp.getData();
+    }
+
+
+    public ApiResponse<RefreshTokenResponse> refreshTokenWithHttpInfo(RefreshTokenRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = refreshTokenValidateBeforeCall(body, propertiesMap);
+        Type localVarReturnType = new TypeToken<RefreshTokenResponse>() {
+        }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    private com.squareup.okhttp.Call refreshTokenValidateBeforeCall(RefreshTokenRequest body, Map<String, String> propertiesMap) throws ApiException {
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling refreshToken(Async)");
+        }
+
+        return refreshTokenCall(body, propertiesMap);
+    }
+
+    public com.squareup.okhttp.Call refreshTokenCall(RefreshTokenRequest body, Map<String, String> propertiesMap) throws ApiException {
+        // create path and map variables
+        String localVarPath = constants.getEndPoints().get("refreshToken");
+
+        ApiClient apiClient = new ApiClient();
+        apiClient.setBasePath(propertiesMap.get("baseURL"));
+
+        if (localVarPath == null || apiClient.getBasePath() == null) {
+            throw new ApiException("Properties file issue");
+        }
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
+        localVarHeaderParams.put("source", "javasdk");
+
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
+    }
+
 }

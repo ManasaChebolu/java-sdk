@@ -9,7 +9,7 @@ import java.util.Objects;
  * CancelOrderResponse
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
 
 public class CancelOrderResponse {
     @SerializedName("infoID")
@@ -21,8 +21,8 @@ public class CancelOrderResponse {
     @SerializedName("timestamp")
     private Long timestamp = null;
 
-    @SerializedName("data")
-    private CancelOrderData data = null;
+    //@SerializedName("data")
+    //private CancelOrderData data = null;
 
     public CancelOrderResponse infoID(String infoID) {
         this.infoID = infoID;
@@ -81,24 +81,24 @@ public class CancelOrderResponse {
         this.timestamp = timestamp;
     }
 
-    public CancelOrderResponse data(CancelOrderData data) {
-        this.data = data;
-        return this;
-    }
+//    public CancelOrderResponse data(CancelOrderData data) {
+//        this.data = data;
+//        return this;
+//    }
 
     /**
      * Get data
      *
      * @return data
      **/
-    @Schema(description = "")
-    public CancelOrderData getData() {
-        return data;
-    }
-
-    public void setData(CancelOrderData data) {
-        this.data = data;
-    }
+//    @Schema(description = "")
+//    public CancelOrderData getData() {
+//        return data;
+//    }
+//
+//    public void setData(CancelOrderData data) {
+//        this.data = data;
+//    }
 
 
     @Override
@@ -112,14 +112,14 @@ public class CancelOrderResponse {
         CancelOrderResponse cancelOrderResponse = (CancelOrderResponse) o;
         return Objects.equals(this.infoID, cancelOrderResponse.infoID) &&
                 Objects.equals(this.infoMsg, cancelOrderResponse.infoMsg) &&
-                Objects.equals(this.timestamp, cancelOrderResponse.timestamp) &&
-                Objects.equals(this.data, cancelOrderResponse.data);
+                Objects.equals(this.timestamp, cancelOrderResponse.timestamp) ;
+                //Objects.equals(this.data, cancelOrderResponse.data);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(infoID, infoMsg, timestamp, data);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(infoID, infoMsg, timestamp, data);
+//    }
 
 
     @Override
@@ -130,7 +130,7 @@ public class CancelOrderResponse {
         sb.append("infoID: ").append(toIndentedString(infoID)).append("\n");
         sb.append("infoMsg: ").append(toIndentedString(infoMsg)).append("\n");
         sb.append("timestamp: ").append(toIndentedString(timestamp)).append("\n");
-        sb.append("data: ").append(toIndentedString(data)).append("\n");
+        //sb.append("data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();
     }

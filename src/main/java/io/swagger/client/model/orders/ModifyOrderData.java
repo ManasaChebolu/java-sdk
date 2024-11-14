@@ -14,7 +14,7 @@ import java.util.Objects;
  * ModifyOrderData
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
 
 public class ModifyOrderData {
     @SerializedName("ordId")

@@ -35,12 +35,10 @@ public class TradeBookApi {
     /**
      * Build call for getOrderBook
      *
-     * @param userId (required)
-     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderBookCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
+    public com.squareup.okhttp.Call getOrderBookCall( Map<String, String> propertiesMap) throws ApiException {
         // create path and map variables
         String localVarPath = constants.getEndPoints().get("orderBook");
 
@@ -55,11 +53,6 @@ public class TradeBookApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (userId != null)
-            localVarHeaderParams.put("user-id", apiClient.parameterToString(userId));
-        if (source != null)
-            localVarHeaderParams.put("source", apiClient.parameterToString(source));
-
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
@@ -79,44 +72,30 @@ public class TradeBookApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, null, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call getOrderBookValidateBeforeCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling getOrderBook(Async)");
-        }
-        // verify the required parameter 'source' is set
-        if (source == null) {
-            throw new ApiException("Missing the required parameter 'source' when calling getOrderBook(Async)");
-        }
+    private com.squareup.okhttp.Call getOrderBookValidateBeforeCall( Map<String, String> propertiesMap) throws ApiException {
 
-        return getOrderBookCall(userId, propertiesMap, source);
+        return getOrderBookCall( propertiesMap);
     }
 
     /**
      * Get orders
      * This endpoint allows users view orders
-     *
-     * @param userId (required)
-     * @param source (required)
      * @return OrderBookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public OrderBookResponse getOrderBook(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        ApiResponse<OrderBookResponse> resp = getOrderBookWithHttpInfo(userId, propertiesMap, source);
+    public OrderBookResponse getOrderBook( Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<OrderBookResponse> resp = getOrderBookWithHttpInfo( propertiesMap);
         return resp.getData();
     }
 
     /**
      * Get orders
      * This endpoint allows users view orders
-     *
-     * @param userId (required)
-     * @param source (required)
      * @return ApiResponse&lt;OrderBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<OrderBookResponse> getOrderBookWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderBookValidateBeforeCall(userId, propertiesMap, source);
+    public ApiResponse<OrderBookResponse> getOrderBookWithHttpInfo( Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = getOrderBookValidateBeforeCall( propertiesMap);
         Type localVarReturnType = new TypeToken<OrderBookResponse>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -124,13 +103,10 @@ public class TradeBookApi {
 
     /**
      * Build call for tradeBook
-     *
-     * @param userId (required)
-     * @param source (required)
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call tradeBookCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
+    public com.squareup.okhttp.Call tradeBookCall( Map<String, String> propertiesMap) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -147,10 +123,6 @@ public class TradeBookApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (userId != null)
-            localVarHeaderParams.put("user-id", apiClient.parameterToString(userId));
-        if (source != null)
-            localVarHeaderParams.put("source", apiClient.parameterToString(source));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -168,49 +140,145 @@ public class TradeBookApi {
         localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
-    private com.squareup.okhttp.Call tradeBookValidateBeforeCall(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling tradeBook(Async)");
-        }
-        // verify the required parameter 'source' is set
-        if (source == null) {
-            throw new ApiException("Missing the required parameter 'source' when calling tradeBook(Async)");
-        }
-
-        return tradeBookCall(userId, propertiesMap, source);
+    private com.squareup.okhttp.Call tradeBookValidateBeforeCall( Map<String, String> propertiesMap) throws ApiException {
+        return tradeBookCall( propertiesMap);
     }
 
     /**
      * Trades
      * This endpoint allows users to view trades
-     *
-     * @param userId (required)
-     * @param source (required)
      * @return TradeBookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TradeBookResponse tradeBook(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        ApiResponse<TradeBookResponse> resp = tradeBookWithHttpInfo(userId, propertiesMap, source);
+    public TradeBookResponse tradeBook( Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<TradeBookResponse> resp = tradeBookWithHttpInfo( propertiesMap);
         return resp.getData();
     }
 
     /**
      * Trades
      * This endpoint allows users to view trades
-     *
-     * @param userId (required)
-     * @param source (required)
-     * @return ApiResponse&lt;TradeBookResponse&gt;
+     ** @return ApiResponse&lt;TradeBookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TradeBookResponse> tradeBookWithHttpInfo(String userId, Map<String, String> propertiesMap, String source) throws ApiException {
-        com.squareup.okhttp.Call call = tradeBookValidateBeforeCall(userId, propertiesMap, source);
+    public ApiResponse<TradeBookResponse> tradeBookWithHttpInfo( Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = tradeBookValidateBeforeCall( propertiesMap);
         Type localVarReturnType = new TypeToken<TradeBookResponse>() {
         }.getType();
         return apiClient.execute(call, localVarReturnType);
+    }
+
+    //Order Trail
+    public OrderTrailResponse orderTrail(OrderTrailRequest body,Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<OrderTrailResponse> resp = orderTrailWithHttpInfo(body, propertiesMap);
+        return resp.getData();
+    }
+
+
+    public ApiResponse<OrderTrailResponse> orderTrailWithHttpInfo(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = orderTrailValidateBeforeCall(body, propertiesMap);
+        Type localVarReturnType = new TypeToken<OrderTrailResponse>() {
+        }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    private com.squareup.okhttp.Call orderTrailValidateBeforeCall(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling orderTrail(Async)");
+        }
+        return orderTrailCall(body, propertiesMap);
+    }
+
+    public com.squareup.okhttp.Call orderTrailCall(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        // create path and map variables
+        String localVarPath = constants.getEndPoints().get("orderTrail");
+
+        ApiClient apiClient = new ApiClient();
+        apiClient.setBasePath(propertiesMap.get("baseURL"));
+
+        if (localVarPath == null || apiClient.getBasePath() == null) {
+            throw new ApiException("Properties file issue");
+        }
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
+
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
+    }
+
+    //Order Status
+    public OrderTrailResponse orderStatus(OrderTrailRequest body,Map<String, String> propertiesMap) throws ApiException {
+        ApiResponse<OrderTrailResponse> resp = orderStatusWithHttpInfo(body, propertiesMap);
+        return resp.getData();
+    }
+
+
+    public ApiResponse<OrderTrailResponse> orderStatusWithHttpInfo(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        com.squareup.okhttp.Call call = orderStatusValidateBeforeCall(body, propertiesMap);
+        Type localVarReturnType = new TypeToken<OrderTrailResponse>() {
+        }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    private com.squareup.okhttp.Call orderStatusValidateBeforeCall(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling orderStatus(Async)");
+        }
+
+        return orderStatusCall(body, propertiesMap);
+    }
+
+    public com.squareup.okhttp.Call orderStatusCall(OrderTrailRequest body, Map<String, String> propertiesMap) throws ApiException {
+        // create path and map variables
+        String localVarPath = constants.getEndPoints().get("orderStatus");
+
+        ApiClient apiClient = new ApiClient();
+        apiClient.setBasePath(propertiesMap.get("baseURL"));
+
+        if (localVarPath == null || apiClient.getBasePath() == null) {
+            throw new ApiException("Properties file issue");
+        }
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+        localVarHeaderParams.putAll(constants.getHeaders());
+
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 }

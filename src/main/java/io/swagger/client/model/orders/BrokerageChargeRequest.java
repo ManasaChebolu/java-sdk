@@ -5,6 +5,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.client.model.portfolio.TradeBook;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.Objects;
  * BrokerageChargeRequest
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:22.976497502Z[GMT]")
 
 public class BrokerageChargeRequest {
     @SerializedName("symbol")
@@ -360,6 +361,64 @@ public class BrokerageChargeRequest {
     @SerializedName("instrument")
     private InstrumentEnum instrument = null;
 
+    @JsonAdapter(OrdTypeEnum.Adapter.class)
+    public enum OrdTypeEnum {
+        @SerializedName("Market")
+        MARKET("Market"),
+        @SerializedName("Limit")
+        LIMIT("Limit"),
+        @SerializedName("Stop")
+        STOP("Stop"),
+        @SerializedName("Stop-loss")
+        STOP_LOSS("Stop-loss"),
+        @SerializedName("SL-M")
+        SL_M("SL-M"),
+        @SerializedName("SL")
+        SL("SL"),
+        @SerializedName("None")
+        NONE("None");
+
+        private String value;
+
+        OrdTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        public static OrdTypeEnum fromValue(String input) {
+            for (OrdTypeEnum b : OrdTypeEnum.values()) {
+                if (b.value.equals(input)) {
+                    return b;
+                }
+            }
+            return null;
+        }
+
+        public static class Adapter extends TypeAdapter<OrdTypeEnum> {
+            @Override
+            public void write(final JsonWriter jsonWriter, final OrdTypeEnum enumeration) throws IOException {
+                jsonWriter.value(String.valueOf(enumeration.getValue()));
+            }
+
+            @Override
+            public OrdTypeEnum read(final JsonReader jsonReader) throws IOException {
+                Object value = jsonReader.nextString();
+                return OrdTypeEnum.fromValue((String) (value));
+            }
+        }
+    }
+
+    @SerializedName("orderType")
+    private OrdTypeEnum orderType = null;
+
     public BrokerageChargeRequest symbol(String symbol) {
         this.symbol = symbol;
         return this;
@@ -397,6 +456,26 @@ public class BrokerageChargeRequest {
     public void setOrderAction(OrderActionEnum orderAction) {
         this.orderAction = orderAction;
     }
+
+    public BrokerageChargeRequest orderType(OrdTypeEnum orderType) {
+        this.orderType = orderType;
+        return this;
+    }
+
+    /**
+     * Get ordType
+     *
+     * @return ordType
+     **/
+    @Schema(description = "")
+    public OrdTypeEnum getOrdType() {
+        return orderType;
+    }
+
+    public void setOrdType(OrdTypeEnum orderType) {
+        this.orderType = orderType;
+    }
+
 
     public BrokerageChargeRequest excToken(String excToken) {
         this.excToken = excToken;
@@ -548,13 +627,14 @@ public class BrokerageChargeRequest {
                 Objects.equals(this.qty, brokerageChargeRequest.qty) &&
                 Objects.equals(this.price, brokerageChargeRequest.price) &&
                 Objects.equals(this.product, brokerageChargeRequest.product) &&
+                Objects.equals(this.orderType, brokerageChargeRequest.orderType) &&
                 Objects.equals(this.triggerPrice, brokerageChargeRequest.triggerPrice) &&
                 Objects.equals(this.instrument, brokerageChargeRequest.instrument);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol, orderAction, excToken, exc, qty, price, product, triggerPrice, instrument);
+        return Objects.hash(symbol, orderAction, excToken, exc, qty, orderType,price, product, triggerPrice, instrument);
     }
 
 
@@ -570,6 +650,7 @@ public class BrokerageChargeRequest {
         sb.append("qty: ").append(toIndentedString(qty)).append("\n");
         sb.append("price: ").append(toIndentedString(price)).append("\n");
         sb.append("product: ").append(toIndentedString(product)).append("\n");
+        sb.append("orderType: ").append(toIndentedString(orderType)).append("\n");
         sb.append("triggerPrice: ").append(toIndentedString(triggerPrice)).append("\n");
         sb.append("instrument: ").append(toIndentedString(instrument)).append("\n");
         sb.append("}");

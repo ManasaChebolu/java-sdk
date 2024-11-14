@@ -11,7 +11,7 @@ import java.util.Objects;
  * PositionBookData
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
 
 public class PositionBookData {
     @SerializedName("positions")

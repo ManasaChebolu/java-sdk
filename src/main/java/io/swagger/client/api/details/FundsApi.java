@@ -11,15 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LimitApi {
+public class FundsApi {
     private final Constants constants;
     private ApiClient apiClient;
 
-    public LimitApi(Constants constants) {
+    public FundsApi(Constants constants) {
         this(constants, Configuration.getDefaultApiClient());
     }
 
-    public LimitApi(Constants constants, ApiClient apiClient) {
+    public FundsApi(Constants constants, ApiClient apiClient) {
         this.constants = constants;
         this.apiClient = apiClient;
     }

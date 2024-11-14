@@ -1,41 +1,30 @@
 package io.swagger.client.model.portfolio;
 
 import com.google.gson.annotations.SerializedName;
-import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 /**
  * OrderTrailData
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
 
 public class OrderTrailData {
     @SerializedName("trails")
     private List<OrderTrail> trails = null;
+    @SerializedName("symbol")
+    private  SymbolDto symbol = null;
+    @SerializedName("orderDetails")
+    private OrderDetails orderDetails = null;
 
-    public OrderTrailData trails(List<OrderTrail> trails) {
+
+    public OrderTrailData(List<OrderTrail> trails, SymbolDto symbol, OrderDetails orderDetails) {
         this.trails = trails;
-        return this;
+        this.symbol = symbol;
+        this.orderDetails = orderDetails;
     }
 
-    public OrderTrailData addTrailsItem(OrderTrail trailsItem) {
-        if (this.trails == null) {
-            this.trails = new ArrayList<OrderTrail>();
-        }
-        this.trails.add(trailsItem);
-        return this;
-    }
-
-    /**
-     * Get trails
-     *
-     * @return trails
-     **/
-    @Schema(description = "")
     public List<OrderTrail> getTrails() {
         return trails;
     }
@@ -44,42 +33,36 @@ public class OrderTrailData {
         this.trails = trails;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        OrderTrailData orderTrailData = (OrderTrailData) o;
-        return Objects.equals(this.trails, orderTrailData.trails);
+    public SymbolDto getSymbol() {
+        return symbol;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(trails);
+    public void setSymbol(SymbolDto symbol) {
+        this.symbol = symbol;
     }
 
+    public OrderDetails getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(OrderDetails orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class OrderTrailData {\n");
-
-        sb.append("trails: ").append(toIndentedString(trails)).append("\n");
+        sb.append("OrderTrailData {\n");
+        sb.append("    symbol: ").append(toIndentedString(symbol)).append("\n");
+        sb.append("    orderDetails: ").append(toIndentedString(orderDetails)).append("\n");
+        sb.append("    trails: ").append(toIndentedString(trails)).append("\n");
         sb.append("}");
         return sb.toString();
     }
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
     private String toIndentedString(Object o) {
         if (o == null) {
-            return null;
+            return "null";
         }
         return o.toString().replace("\n", "\n    ");
     }

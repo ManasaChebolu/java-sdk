@@ -2,15 +2,23 @@ package io.swagger.client.example;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.Pair;
+import io.swagger.client.api.details.ChartApi;
+import io.swagger.client.api.details.FundsApi;
+import io.swagger.client.api.details.LoginProfileApi;
+import io.swagger.client.api.details.ProfitLossReportApi;
 import io.swagger.client.api.login.LoginApi;
 import io.swagger.client.api.order.OrderControllerApi;
 import io.swagger.client.api.portfolio.PositionControllerApi;
 import io.swagger.client.api.portfolio.TradeBookApi;
 import io.swagger.client.constants.Constants;
+import io.swagger.client.model.details.*;
 import io.swagger.client.model.login.LoginBody;
 import io.swagger.client.model.login.LoginResponse;
+import io.swagger.client.model.login.RefreshTokenRequest;
 import io.swagger.client.model.orders.*;
 import io.swagger.client.model.portfolio.OrderTrailRequest;
+import io.swagger.client.model.portfolio.PositionConversionRequest;
+import org.threeten.bp.LocalDateTime;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,8 +27,19 @@ import java.util.*;
 public class Example {
     private static final String CONFIG_FILE_PATH = "src/main/resources/application.properties";
 
-    private static Constants constants = new Constants();
+    private static Constants constants = new Constants()    ;
     private String orderId;
+    private String refreshToken;
+
+    public String getParOrderId() {
+        return parOrderId;
+    }
+
+    public void setParOrderId(String parOrderId) {
+        this.parOrderId = parOrderId;
+    }
+
+    private String parOrderId;
 
     public String getOrderId() {
         return orderId;
@@ -55,110 +74,237 @@ public class Example {
 
     public void login(LoginApi defaultAPI, Map<String, String> properties) throws ApiException {
         LoginBody body = new LoginBody();
-        body.setPassword("example@123");
-        body.setUserId("EXAMPLE1");
-        body.setMobileNumber("1234567890");
+        body.setPassword("Abcd@12341");
+        body.setUserId("NEST8003");
+        body.setMobileNumber("9642229195");
 
-        constants.setApiKey("SAMPLE_API_KEY");
-
+        constants.setApiKey("XNVFuVAF4ZTh39lVeH");
         LoginResponse loginResponse = defaultAPI.loginPost(body, properties, constants.apiKey);
 
-        System.out.println("response: " + loginResponse);
+        System.out.println("LoginResponse: " + loginResponse);
         String accessToken = loginResponse.getData().getAccessToken();
+        refreshToken = loginResponse.getData().getRefreshToken();
 
         constants.setAuthString(accessToken);
+    }
 
+    public void refreshToken(LoginApi defaultAPI, Map<String,String> properties) throws ApiException {
+        RefreshTokenRequest body = new RefreshTokenRequest();
+        body.setRefreshToken(refreshToken);
+
+        System.out.println("\n\nRefreshTokenResponse:  " + defaultAPI.refreshToken(body,properties));
+    }
+
+
+    public void getProfile(LoginProfileApi loginProfileApi, Map<String, String> properties) throws ApiException {
+        GetProfileRequest request = new GetProfileRequest();
+        GetProfileRequestData data = new GetProfileRequestData();
+        request.setData(data);
+        request.setAppID("1");
+
+        System.out.println("\n\nGetProfileResponse: " + loginProfileApi.getProfile(request,properties));
+    }
+
+    public void funds(FundsApi fundsApi, Map<String, String> properties) throws ApiException {
+        System.out.println("\n\nFundsResponse: " + fundsApi.fundView(properties));
     }
 
     public void placeOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
         PlaceOrderRequest body = new PlaceOrderRequest();
-
-        body.setSymbol("NATIONALUM-EQ");
-        body.setExcToken("6364");
+        body.setSymbol("ACC-EQ");
+        body.setExcToken("532540");
         body.setOrdAction(PlaceOrderRequest.OrdActionEnum.BUY);
         body.setOrdValidity(PlaceOrderRequest.OrdValidityEnum.DAY);
-        body.setOrdType(PlaceOrderRequest.OrdTypeEnum.LIMIT);
-        body.setPrdType(PlaceOrderRequest.PrdTypeEnum.NRML);
+        body.setOrdType(PlaceOrderRequest.OrdTypeEnum.MARKET);
+        body.setPrdType(PlaceOrderRequest.PrdTypeEnum.DELIVERY);
         body.setQty(1);
         body.setTriggerPrice(0.0);
-        body.setLimitPrice(192.55);
-        body.setTriggerPrice(0.0);
+        body.setLimitPrice(0.0);
         body.setDisQty(0);
         body.setInstrument(PlaceOrderRequest.InstrumentEnum.STK);
         body.setExc(PlaceOrderRequest.ExcEnum.NSE);
-        body.setLotSize(0);
+        body.setLotSize(1);
         body.setAmo(false);
         body.setBuild("MOB");
         body.setBoStpLoss(0);
         body.setBoTgtPrice(0);
         body.setTrailingSL(0.0);
 
-        PlaceOrderResponse response = orderApi.placeOrder(body, properties, "DBG101", "WEB");
+        String latitude = "5.666";
+        String longitude= "";
 
-        setOrderId(response.getRespnseData().getOrdId());
+        PlaceOrderResponse response = orderApi.placeOrder(body, properties,latitude,longitude);
+        System.out.println("\n\nPlaceOrderResponse: " +response);
+        orderId = response.getRespnseData().getOrdId();
     }
 
     public void brokerageChargeResponse(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
         BrokerageChargeRequest requestBody = new BrokerageChargeRequest();
-        requestBody.setSymbol("");
+        requestBody.setSymbol("STK_TCS_EQ_NSE");
         requestBody.setExc(BrokerageChargeRequest.ExcEnum.NSE);
-        requestBody.setProduct(BrokerageChargeRequest.ProductEnum.NRML);
+        requestBody.setProduct(BrokerageChargeRequest.ProductEnum.INTRADAY);
         requestBody.setTriggerPrice("");
-        requestBody.setPrice("3000");
-        requestBody.setQty("100");
+        requestBody.setPrice("3489.80");
+        requestBody.setQty("10000000");
         requestBody.setInstrument(BrokerageChargeRequest.InstrumentEnum.STK);
-        requestBody.setOrderAction(BrokerageChargeRequest.OrderActionEnum.BUY);
-        requestBody.setExcToken("25");
+        requestBody.setOrderAction(BrokerageChargeRequest.OrderActionEnum.SELL);
+        requestBody.setExcToken("11536");
+        requestBody.setOrdType(BrokerageChargeRequest.OrdTypeEnum.fromValue("Market"));
 
-        System.out.println("response: " + orderApi.brokerageCharges(requestBody, properties, "DBG101"));
-    }
-
-    public void getOrderBook(TradeBookApi tradeBookAPI, Map<String, String> properties) throws ApiException {
-        System.out.println("response: " + tradeBookAPI.getOrderBook("DBG101", properties, "WEB"));
+        System.out.println("\n\nBrokerageChargesResponse: " + orderApi.brokerageCharges(requestBody, properties));
     }
 
     public void modifyOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
         ModifyOrderRequest requestBody = new ModifyOrderRequest();
         requestBody.setTriggerPrice(0.0);
-        requestBody.setOrdType(ModifyOrderRequest.OrdTypeEnum.LIMIT);
-        requestBody.setPrdType(ModifyOrderRequest.PrdTypeEnum.NRML);
+        requestBody.setOrdType(ModifyOrderRequest.OrdTypeEnum.MARKET);
+        requestBody.setPrdType(ModifyOrderRequest.PrdTypeEnum.CASH);
         requestBody.setInstrument(ModifyOrderRequest.InstrumentEnum.STK);
         requestBody.setExc(ModifyOrderRequest.ExcEnum.NSE);
         requestBody.setQty(5);
         requestBody.setLotSize(0);
-        requestBody.setSymbol("NATIONALUM-EQ");
-        requestBody.setOrdId(getOrderId());
+        requestBody.setSymbol("ACC-EQ");
+        requestBody.setOrdId(orderId);
         requestBody.setOrdAction(ModifyOrderRequest.OrdActionEnum.BUY);
-        requestBody.limitPrice(192.55);
+        requestBody.limitPrice( 192.55);
         requestBody.setDisQty(0);
         requestBody.setOrdValidity(ModifyOrderRequest.OrdValidityEnum.DAY);
         requestBody.setTradedQty(0);
         requestBody.setOrdValidityDays(0);
-        requestBody.setExchangeToken("6364");
+        requestBody.setExchangeToken("13528");
         requestBody.setAmo(false);
-        System.out.println("response: " + orderApi.modifyOrder(requestBody, properties, "DBG101", "WEB"));
+
+        String latitude = "4";
+        String longitude= "9.888";
+        System.out.println("\n\nModifyOrderResponse: " + orderApi.modifyOrder(requestBody, properties, latitude, longitude));
     }
 
-    public void cancelOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
+   public void cancelOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
         CancelOrderRequest requestBody = new CancelOrderRequest();
-        System.out.println("order id: " + getOrderId());
-        requestBody.setSymbol("NATIONALUM-EQ");
-        requestBody.setOrdId(getOrderId());
+        requestBody.setSymbol("ACC-EQ");
+        requestBody.setOrdId(orderId);
         requestBody.setExc(CancelOrderRequest.ExcEnum.NSE);
 
-        System.out.println("response: " + orderApi.cancelOrder(requestBody, properties, "DBG101", "WEB"));
+       String latitude = "";
+       String longitude= "0.77";
+
+        System.out.println("\n\nCancelOrderResponse: " + orderApi.cancelOrder(requestBody, properties,latitude,longitude));
+    }
+    public void exitOrder(OrderControllerApi orderApi, Map<String, String> properties) throws ApiException {
+        ExitOrderRequest requestBody = new ExitOrderRequest();
+        requestBody.setBoOrdStatus("complete");
+        requestBody.setSymbol("ACC-EQ");
+        requestBody.setOrdId(orderId);
+        requestBody.setParOrdId(orderId);
+        requestBody.setExc(ExitOrderRequest.ExcEnum.NSE);
+        requestBody.setPrdType(ExitOrderRequest.PrdTypeEnum.COVER_ORDER);
+
+        String latitude = "3.22";
+        String longitude= "1.6666";
+        System.out.println("\n\nExitOrderResponse: " + orderApi.exitOrder(requestBody, properties,latitude,longitude));
     }
 
     public void getTradeBook(TradeBookApi tradeBookApi, Map<String, String> properties) throws ApiException {
-        System.out.println("trade book");
-        tradeBookApi.tradeBook("DBG101", properties, "WEB");
+        System.out.println("\n\nTradeBookResponse: " + tradeBookApi.tradeBook( properties));
+    }
+
+    public void getOrderBook(TradeBookApi tradeBookAPI, Map<String, String> properties) throws ApiException {
+        System.out.println("\n\nOrderBookResponse: " + tradeBookAPI.getOrderBook( properties));
+    }
+
+    public void orderTrail(TradeBookApi tradeBookApi, Map<String, String> properties) throws ApiException {
+        OrderTrailRequest requestBody = new OrderTrailRequest();
+        requestBody.setInstrument(OrderTrailRequest.InstrumentEnum.valueOf("STK"));
+        requestBody.setOrdId("241114000000083");
+
+        System.out.println("\n\nOrderTrailResponse: " + tradeBookApi.orderTrail(requestBody, properties));
+    }
+
+    public void orderStatus(TradeBookApi tradeBookApi, Map<String, String> properties) throws ApiException {
+        OrderTrailRequest request = new OrderTrailRequest();
+        request.setInstrument(OrderTrailRequest.InstrumentEnum.STK);
+        request.setOrdId("241114000000083");
+
+        System.out.println("\n\nOrderStatusResponse: " + tradeBookApi.orderStatus(request,properties));
     }
 
     public void getPositionBook(PositionControllerApi positionControllerApi, Map<String, String> properties) throws ApiException {
         List<Pair> query = new ArrayList<>();
         query.add(new Pair("type", "net"));
-        System.out.println("response: " + positionControllerApi.getPositionBook(query, "", properties, "WEB"));
+        System.out.println("\n\nPositionBookResponse: " + positionControllerApi.getPositionBook(query, properties));
     }
+    public void convertPosition(PositionControllerApi positionControllerApi, Map<String, String> properties) throws ApiException {
+        PositionConversionRequest req=new PositionConversionRequest();
+        req.setExc(PositionConversionRequest.ExcEnum.BSE);
+        req.setExcToken("308");
+        req.setInstrument(PositionConversionRequest.InstrumentEnum.OPTSTK);
+        req.setId("STK_BAJAJHIND_EQ_NSE");
+        req.setQty(2589);
+        req.setSymbol("STK_BAJAJHIND_EQ_NSE");
+        req.setLotSize(1);
+        req.setOrdAction(PositionConversionRequest.OrdActionEnum.valueOf("SELL"));
+        req.setPrdType(PositionConversionRequest.PrdTypeEnum.valueOf("DELIVERY"));
+        req.setToPrdType(PositionConversionRequest.ToPrdTypeEnum.valueOf("INTRADAY"));
+        req.setType("DAY1");
+        System.out.println("\n\nConvertPositionResponse: " + positionControllerApi.convertPosition(req, properties));
+    }
+
+
+    public void doHoldings(PositionControllerApi positionControllerApi, Map<String, String> properties) throws ApiException {
+        System.out.println("\n\nHoldingsResponse: " + positionControllerApi.doHoldings(properties));
+    }
+
+    public void profitLossCashReport(ProfitLossReportApi profitLossReportApi, Map<String ,String> properties) throws ApiException {
+        ProfitLossCashReportRequest requestBody = new ProfitLossCashReportRequest();
+        List<ReportFilters> filters = new ArrayList<>();
+        filters.add(new ReportFilters("date","14/10/2024-14/11/2024"));
+        filters.add(new ReportFilters("charges","incCharges"));
+        requestBody.setFilters(filters);
+
+        System.out.println("\n\nProfitLossCashReportResponse:" + profitLossReportApi.profitLossCashReport(requestBody,properties));
+    }
+
+    public void profitLossFoReport (ProfitLossReportApi profitLossReportApi, Map<String ,String> properties) throws ApiException {
+        ProfitLossFoReportRequest requestBody = new ProfitLossFoReportRequest();
+        List<ReportFilters> filters = new ArrayList<>();
+        filters.add(new ReportFilters("date","13/10/2024-13/11/2024"));
+        filters.add(new ReportFilters("charges","incCharges"));
+        filters.add(new ReportFilters("exc","ALL"));
+        filters.add(new ReportFilters("finYear","2023-2024"));
+        requestBody.setFilters(filters);
+
+        System.out.println("\n\nProfitLossFoResponse" + profitLossReportApi.profitLossFoReport(requestBody,properties));
+    }
+
+    public void historicalCandleData(ChartApi chartApi,Map<String,String> properties) throws ApiException {
+            System.out.println("\n\nHistoricalCandleDataResponse :  " +
+                    chartApi.historicalData("STK_INOXGREEN_BE_NSE",
+                            "1day",
+                            "2023-02-01T17:55:00.000",
+                            "2024-02-01T17:55:00.000",
+                            OrderTrailRequest.InstrumentEnum.STK,
+                            "NSE",
+                            "12193_NSE",
+                            properties
+                    )
+            );
+
+    }
+
+        public void intradayCandleData(ChartApi chartApi, Map<String, String> properties) throws ApiException {
+            IntradayCandleDataRequest request = new IntradayCandleDataRequest();
+            IntradayData data = new IntradayData();
+            data.setSymbol("STK_JIOFIN_EQ_NSE");
+            data.setResolution("1day");
+            data.setExchange(ModifyOrderRequest.ExcEnum.NSE);
+            data.setInstrument(PlaceOrderRequest.InstrumentEnum.STK);
+            data.setStartTime("2024-09-02T00:00:00.000");
+            data.setEndTime("2024-09-02T15:00:00.000");
+            request.setData(data);
+
+            System.out.println("\n\nIntradayCandleDataResponse: " + chartApi.intraday(request,properties));
+        }
+
 
     public static void main(String[] args) throws ApiException {
         System.out.println("started");
@@ -171,36 +317,70 @@ public class Example {
         OrderControllerApi orderApi = new OrderControllerApi(constants);
         TradeBookApi tradeBookApi = new TradeBookApi(constants);
         PositionControllerApi positionControllerApi = new PositionControllerApi(constants);
+        ProfitLossReportApi profitLossReportApi = new ProfitLossReportApi(constants);
+        ChartApi chartApi = new ChartApi(constants);
+        LoginProfileApi loginProfileApi = new LoginProfileApi(constants);
+        FundsApi fundsApi = new FundsApi(constants);
         System.out.println("object created");
 
         // login
         obj.login(loginApi, properties);
 
-        // brokerage charges
-        obj.brokerageChargeResponse(orderApi, properties);
+        //refresh Token
+       //obj.refreshToken(loginApi, properties);
+
+        //get profile
+        //obj.getProfile(loginProfileApi,properties);
+
+        //funds
+       //obj.funds(fundsApi,properties);
 
         // place order
-        obj.placeOrder(orderApi, properties);
+       //obj.placeOrder(orderApi, properties);
 
         // modify Order
-        obj.modifyOrder(orderApi, properties);
-
-        // order book
-        obj.getOrderBook(tradeBookApi, properties);
-
-        // trade book
-        obj.getTradeBook(tradeBookApi, properties);
+       //obj.modifyOrder(orderApi, properties);
 
         // cancel order
-        obj.cancelOrder(orderApi, properties);
+        //obj.cancelOrder(orderApi, properties);
 
-        // todo exit orders
+        // exit order
+       // obj.exitOrder(orderApi,properties);
 
-        // todo convert position
+        //Brokerage Charges
+        //obj.brokerageChargeResponse(orderApi,properties);
 
-        // todo holdings
+        // trade book
+        //obj.getTradeBook(tradeBookApi, properties);
+
+        // order book
+       //obj.getOrderBook(tradeBookApi, properties);
+
+        //order trail
+       //obj.orderTrail(tradeBookApi, properties);
+
+        //order Status
+       // obj.orderStatus(tradeBookApi,properties);
+
+        // Holdings
+       //obj.doHoldings(positionControllerApi,properties);
 
         // position book
-        obj.getPositionBook(positionControllerApi, properties);
+       //obj.getPositionBook(positionControllerApi, properties);
+
+        // convert position
+       //obj.convertPosition(positionControllerApi,properties);
+
+        // profit loss cash report
+      // obj.profitLossCashReport(profitLossReportApi,properties);
+
+        //profit loss fo report
+        //obj.profitLossFoReport(profitLossReportApi,properties);
+
+        //historical Data
+        //obj.historicalCandleData(chartApi,properties);
+
+        //Intraday Data
+        //obj.intradayCandleData(chartApi,properties);
     }
 }

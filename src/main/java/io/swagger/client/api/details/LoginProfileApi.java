@@ -67,7 +67,7 @@ public class LoginProfileApi {
         localVarHeaderParams.putAll(constants.getHeaders());
 
         String[] localVarAuthNames = new String[]{};
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, body, localVarHeaderParams, localVarFormParams, localVarAuthNames, null);
     }
 
     private com.squareup.okhttp.Call getProfileValidateBeforeCall(GetProfileRequest body, Map<String, String> propertiesMap) throws ApiException {

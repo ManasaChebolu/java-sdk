@@ -6,14 +6,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * IntradayRequest
+ * IntradayCandleDataRequest
  */
 
-public class IntradayRequest {
+public class IntradayCandleDataRequest {
     @SerializedName("data")
     private IntradayData data = null;
 
-    public IntradayRequest data(IntradayData data) {
+    public IntradayCandleDataRequest data(IntradayData data) {
         this.data = data;
         return this;
     }
@@ -41,8 +41,8 @@ public class IntradayRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        IntradayRequest intradayRequest = (IntradayRequest) o;
-        return Objects.equals(this.data, intradayRequest.data);
+        IntradayCandleDataRequest intradayCandleDataRequest = (IntradayCandleDataRequest) o;
+        return Objects.equals(this.data, intradayCandleDataRequest.data);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class IntradayRequest {
     @Override
     public String toString() {
 
-        return "class IntradayRequest {\n" +
+        return "class IntradayCandleDataRequest {\n" +
                 "data: " + toIndentedString(data) + "\n" +
                 "}";
     }

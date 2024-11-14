@@ -9,7 +9,7 @@ import java.util.Objects;
  * OrderTrailResponse
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
 
 public class OrderTrailResponse {
     @SerializedName("infoID")
@@ -24,17 +24,14 @@ public class OrderTrailResponse {
     @SerializedName("data")
     private OrderTrailData data = null;
 
-    public OrderTrailResponse infoID(String infoID) {
+
+    public OrderTrailResponse(String infoID, String infoMsg, Long timestamp, OrderTrailData data) {
         this.infoID = infoID;
-        return this;
+        this.infoMsg = infoMsg;
+        this.timestamp = timestamp;
+        this.data = data;
     }
 
-    /**
-     * Get infoID
-     *
-     * @return infoID
-     **/
-    @Schema(description = "")
     public String getInfoID() {
         return infoID;
     }
@@ -43,17 +40,6 @@ public class OrderTrailResponse {
         this.infoID = infoID;
     }
 
-    public OrderTrailResponse infoMsg(String infoMsg) {
-        this.infoMsg = infoMsg;
-        return this;
-    }
-
-    /**
-     * Get infoMsg
-     *
-     * @return infoMsg
-     **/
-    @Schema(description = "")
     public String getInfoMsg() {
         return infoMsg;
     }
@@ -62,17 +48,6 @@ public class OrderTrailResponse {
         this.infoMsg = infoMsg;
     }
 
-    public OrderTrailResponse timestamp(Long timestamp) {
-        this.timestamp = timestamp;
-        return this;
-    }
-
-    /**
-     * Get timestamp
-     *
-     * @return timestamp
-     **/
-    @Schema(description = "")
     public Long getTimestamp() {
         return timestamp;
     }
@@ -81,17 +56,6 @@ public class OrderTrailResponse {
         this.timestamp = timestamp;
     }
 
-    public OrderTrailResponse data(OrderTrailData data) {
-        this.data = data;
-        return this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return data
-     **/
-    @Schema(description = "")
     public OrderTrailData getData() {
         return data;
     }
@@ -100,25 +64,12 @@ public class OrderTrailResponse {
         this.data = data;
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        OrderTrailResponse orderTrailResponse = (OrderTrailResponse) o;
-        return Objects.equals(this.infoID, orderTrailResponse.infoID) &&
-                Objects.equals(this.infoMsg, orderTrailResponse.infoMsg) &&
-                Objects.equals(this.timestamp, orderTrailResponse.timestamp) &&
-                Objects.equals(this.data, orderTrailResponse.data);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(infoID, infoMsg, timestamp, data);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderTrailResponse that = (OrderTrailResponse) o;
+        return Objects.equals(infoID, that.infoID) && Objects.equals(infoMsg, that.infoMsg) && Objects.equals(timestamp, that.timestamp) && Objects.equals(data, that.data);
     }
 
 
@@ -135,15 +86,10 @@ public class OrderTrailResponse {
         return sb.toString();
     }
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
     private String toIndentedString(Object o) {
         if (o == null) {
-            return "null";
+            return null;
         }
         return o.toString().replace("\n", "\n    ");
     }
-
 }

@@ -13,15 +13,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReportApi {
+public class ProfitLossReportApi {
     private final Constants constants;
     private ApiClient apiClient;
 
-    public ReportApi(Constants constants) {
+    public ProfitLossReportApi(Constants constants) {
         this(constants, Configuration.getDefaultApiClient());
     }
 
-    public ReportApi(Constants constants, ApiClient apiClient) {
+    public ProfitLossReportApi(Constants constants, ApiClient apiClient) {
         this.constants = constants;
         this.apiClient = apiClient;
     }
@@ -75,7 +75,7 @@ public class ReportApi {
     private com.squareup.okhttp.Call profitLossCashReportValidateBeforeCall(ProfitLossCashReportRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling profitLossReport(Async)");
+            throw new ApiException("Missing the required parameter 'body' when calling profitLossCashReport(Async)");
         }
 
         return profitLossCashReportCall(body, propertiesMap);
@@ -121,7 +121,6 @@ public class ReportApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
         final String[] localVarAccepts = {
                 "application/json"
         };
@@ -142,9 +141,8 @@ public class ReportApi {
     private com.squareup.okhttp.Call profitLossFoReportValidateBeforeCall(ProfitLossFoReportRequest body, Map<String, String> propertiesMap) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling profitLossReport(Async)");
+            throw new ApiException("Missing the required parameter 'body' when calling profitLossFoReport(Async)");
         }
-
         return profitLossFoReportCall(body, propertiesMap);
     }
 

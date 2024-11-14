@@ -10,12 +10,13 @@ import org.threeten.bp.LocalDate;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * SymbolDto
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-04T12:13:29.521089219Z[GMT]")
 
 public class SymbolDto {
     @SerializedName("symbol")
@@ -337,6 +338,27 @@ public class SymbolDto {
 
     @SerializedName("freezeQty")
     private String freezeQty = null;
+
+    public Set<String> getOtherExc() {
+        return otherExc;
+    }
+
+    public void setOtherExc(Set<String> otherExc) {
+        this.otherExc = otherExc;
+    }
+
+    public String getTradingSymbol() {
+        return tradingSymbol;
+    }
+
+    public void setTradingSymbol(String tradingSymbol) {
+        this.tradingSymbol = tradingSymbol;
+    }
+
+    @SerializedName("tradingSymbol")
+    private String tradingSymbol = null;
+    @SerializedName("otherExc")
+    private Set<String> otherExc = null;
 
     public SymbolDto symbol(String symbol) {
         this.symbol = symbol;
@@ -747,7 +769,9 @@ public class SymbolDto {
                 Objects.equals(this.fno, symbolDto.fno) &&
                 Objects.equals(this.mtf, symbolDto.mtf) &&
                 Objects.equals(this.multiplier, symbolDto.multiplier) &&
-                Objects.equals(this.freezeQty, symbolDto.freezeQty);
+                Objects.equals(this.freezeQty, symbolDto.freezeQty)&&
+                Objects.equals(this.tradingSymbol, symbolDto.tradingSymbol) &&
+                Objects.equals(this.otherExc, symbolDto.otherExc);
     }
 
     @Override
@@ -781,6 +805,8 @@ public class SymbolDto {
         sb.append("mtf: ").append(toIndentedString(mtf)).append("\n");
         sb.append("multiplier: ").append(toIndentedString(multiplier)).append("\n");
         sb.append("freezeQty: ").append(toIndentedString(freezeQty)).append("\n");
+        sb.append("tradingSymbol: ").append(toIndentedString(tradingSymbol)).append("\n");
+        sb.append("otherExc: ").append(toIndentedString(otherExc)).append("\n");
         sb.append("}");
         return sb.toString();
     }

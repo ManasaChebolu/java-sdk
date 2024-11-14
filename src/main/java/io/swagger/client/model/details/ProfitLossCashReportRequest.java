@@ -5,11 +5,15 @@ import java.util.Objects;
 /**
  * ProfitLossRequest
  */
-public class ProfitLossCashRequest {
+public class ProfitLossCashReportRequest {
     private List<ReportFilters> filters = null;
 
-    public ProfitLossCashRequest(List<ReportFilters> filters) {
+    public ProfitLossCashReportRequest(List<ReportFilters> filters) {
         this.filters = filters;
+    }
+
+    public ProfitLossCashReportRequest() {
+
     }
 
     public List<ReportFilters> getFilters() {
@@ -24,7 +28,7 @@ public class ProfitLossCashRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProfitLossCashRequest that = (ProfitLossCashRequest) o;
+        ProfitLossCashReportRequest that = (ProfitLossCashReportRequest) o;
         return Objects.equals(filters, that.filters);
     }
 
@@ -35,7 +39,7 @@ public class ProfitLossCashRequest {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ProfitLossCashRequest {\n");
+        sb.append("ProfitLossCashReportRequest {\n");
         sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
         sb.append("}");
         return sb.toString();

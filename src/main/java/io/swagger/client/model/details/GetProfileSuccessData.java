@@ -3,6 +3,7 @@ package io.swagger.client.model.details;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,88 +11,81 @@ import java.util.Objects;
  */
 
 public class GetProfileSuccessData {
-    @SerializedName("upcomingPlan")
-    private String upcomingPlan = null;
+    private List<ProfileBankDtl> bankDtls = null;
+    private List<ProfileClientDtl> clientDtls = null;
+    private List<Object> nomineeContactDtls= null;
+    private List<Object> nomineeNsdl= null;
+    private List<Object> nomineeCdsl= null;
 
-    @SerializedName("profile")
-    private Profile profile = null;
-
-    public GetProfileSuccessData upcomingPlan(String upcomingPlan) {
-        this.upcomingPlan = upcomingPlan;
-        return this;
+    public GetProfileSuccessData(List<ProfileBankDtl> bankDtls, List<ProfileClientDtl> clientDtls, List<Object> nomineeContactDtls, List<Object> nomineeNsdl, List<Object> nomineeCdsl) {
+        this.bankDtls = bankDtls;
+        this.clientDtls = clientDtls;
+        this.nomineeContactDtls = nomineeContactDtls;
+        this.nomineeNsdl = nomineeNsdl;
+        this.nomineeCdsl = nomineeCdsl;
     }
 
-    /**
-     * Get upcomingPlan
-     *
-     * @return upcomingPlan
-     **/
-    @Schema(description = "")
-    public String getUpcomingPlan() {
-        return upcomingPlan;
+    public List<ProfileBankDtl> getBankDtls() {
+        return bankDtls;
     }
 
-    public void setUpcomingPlan(String upcomingPlan) {
-        this.upcomingPlan = upcomingPlan;
+    public void setBankDtls(List<ProfileBankDtl> bankDtls) {
+        this.bankDtls = bankDtls;
     }
 
-    public GetProfileSuccessData profile(Profile profile) {
-        this.profile = profile;
-        return this;
+    public List<ProfileClientDtl> getClientDtls() {
+        return clientDtls;
     }
 
-    /**
-     * Get profile
-     *
-     * @return profile
-     **/
-    @Schema(description = "")
-    public Profile getProfile() {
-        return profile;
+    public void setClientDtls(List<ProfileClientDtl> clientDtls) {
+        this.clientDtls = clientDtls;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public List<Object> getNomineeContactDtls() {
+        return nomineeContactDtls;
     }
 
+    public void setNomineeContactDtls(List<Object> nomineeContactDtls) {
+        this.nomineeContactDtls = nomineeContactDtls;
+    }
+
+    public List<Object> getNomineeNsdl() {
+        return nomineeNsdl;
+    }
+
+    public void setNomineeNsdl(List<Object> nomineeNsdl) {
+        this.nomineeNsdl = nomineeNsdl;
+    }
+
+    public List<Object> getNomineeCdsl() {
+        return nomineeCdsl;
+    }
+
+    public void setNomineeCdsl(List<Object> nomineeCdsl) {
+        this.nomineeCdsl = nomineeCdsl;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        GetProfileSuccessData getProfileSucsessData = (GetProfileSuccessData) o;
-        return Objects.equals(this.upcomingPlan, getProfileSucsessData.upcomingPlan) &&
-                Objects.equals(this.profile, getProfileSucsessData.profile);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GetProfileSuccessData that = (GetProfileSuccessData) o;
+        return Objects.equals(bankDtls, that.bankDtls) && Objects.equals(clientDtls, that.clientDtls) && Objects.equals(nomineeContactDtls, that.nomineeContactDtls) && Objects.equals(nomineeNsdl, that.nomineeNsdl) && Objects.equals(nomineeCdsl, that.nomineeCdsl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(upcomingPlan, profile);
+        return Objects.hash(bankDtls, clientDtls, nomineeContactDtls, nomineeNsdl, nomineeCdsl);
     }
-
 
     @Override
     public String toString() {
-
-        return "class GetProfileSuccessData {\n" +
-                "    upcomingPlan: " + toIndentedString(upcomingPlan) + "\n" +
-                "    profile: " + toIndentedString(profile) + "\n" +
-                "}";
+        return "GetProfileSuccessData{" +
+                "bankDtls=" + bankDtls +
+                ", clientDtls=" + clientDtls +
+                ", nomineeContactDtls=" + nomineeContactDtls +
+                ", nomineeNsdl=" + nomineeNsdl +
+                ", nomineeCdsl=" + nomineeCdsl +
+                '}';
     }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
 }

@@ -45,34 +45,34 @@ public class Constants implements ConstantsInterface {
         return apiKey;
     }
 
+
     public Constants() {
         // End Points
-        this.endPoints.put("exitOrder", "/wrapper-order-service/api/order/v1/exit-order");
-        this.endPoints.put("convertPosition", "/wrapper-order-service/api/portfolio/v1/convert-positions");
-        this.endPoints.put("doHoldings", "/wrapper-details-service/api/portfolio/v1/holdings");
-
-        this.endPoints.put("historicalData", "/wrapper-details-service/api/chart/v1/historical-candle-data");
-        this.endPoints.put("intradayData", "/wrapper-details-service/api/chart/v1/intraday-candle-data");
-        this.endPoints.put("sparkline", "/wrapper-details-service/api/quote/v1/get-ohlc");
-        this.endPoints.put("funds", "/wrapper-details-service/api/funds/v1/get-funds");
-        this.endPoints.put("getProfile", "/wrapper-details-service/api/user/v1/get-profile");
-        this.endPoints.put("quotes", "/wrapper-details-service/api/market/v1/quote");
-        this.endPoints.put("profitLoss", "/wrapper-details-service/api/trade/v1/profit-loss-report");
-
-        this.endPoints.put("orderDetails", "/wrapper-details-service/api/order/v1/order-details");
-        this.endPoints.put("orderHistory", "/wrapper-details-service/api/order/v1/order-history");
-        this.endPoints.put("tradeDetails", "/wrapper-details-service/api/order/v1/trade-details");
-
-        // done
         this.endPoints.put("login", "/auth-services/api/auth/v1/login");
+        this.endPoints.put("refreshToken", "/auth-services/api/auth/v1/refresh-token");
+        this.endPoints.put("getProfile", "/wrapper-service/api/user/v1/get-profile");
+        this.endPoints.put("funds", "/wrapper-service/api/funds/v1/get-funds");
 
-        this.endPoints.put("placeOrder", "/wrapper-order-service/api/order/v1/place-order");
-        this.endPoints.put("modifyOrder", "/wrapper-order-service/api/order/v1/modify-order");
-        this.endPoints.put("brokerageCharges", "/wrapper-details-service/api/trade/v1/brokerage");
-        this.endPoints.put("cancelOrder", "/wrapper-order-service/api/order/v1/cancel-order");
+        this.endPoints.put("placeOrder", "/wrapper-service/api/order/v1/place-order");
+        this.endPoints.put("modifyOrder", "/wrapper-service/api/order/v1/modify-order");
+        this.endPoints.put("exitOrder", "/wrapper-service/api/order/v1/exit-order");
+        this.endPoints.put("cancelOrder", "/wrapper-service/api/order/v1/cancel-order");
+        this.endPoints.put("brokerageCharges", "/wrapper-service/api/trade/v1/brokerage");
 
-        this.endPoints.put("orderBook", "/wrapper-details-service/api/order/v1/order-book");
-        this.endPoints.put("tradeBook", "/wrapper-details-service/api/order/v1/trade-book");
-        this.endPoints.put("positionBook", "/wrapper-details-service/api/portfolio/v1/position-book?type=");
+        this.endPoints.put("orderBook", "/wrapper-service/api/order/v1/order-book");
+        this.endPoints.put("tradeBook", "/wrapper-service/api/order/v1/trade-book");
+        this.endPoints.put("orderTrail", "/wrapper-service/api/order/v1/order-trail");
+        this.endPoints.put("orderStatus", "/wrapper-service/api/order/v1/order-status");
+
+        this.endPoints.put("positionBook", "/wrapper-service/api/portfolio/v1/position-book?type=");
+        this.endPoints.put("convertPosition", "/wrapper-service/api/portfolio/v1/convert-position");
+        this.endPoints.put("doHoldings", "/wrapper-service/api/portfolio/v1/holdings");
+
+        this.endPoints.put("profitLossCashReport", "/wrapper-service/api/trade/v1/profit-loss-report");
+        this.endPoints.put("profitLossFoReport", "/wrapper-service/api/trade/v1/profit-loss-fo-report");
+
+        this.endPoints.put("historicalData", "/wrapper-service/api/chart/v1/historical-candle-data");
+        this.endPoints.put("intradayData", "/wrapper-service/api/chart/v1/intraday-candle-data");
+
     }
 }

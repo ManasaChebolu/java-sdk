@@ -1,6 +1,8 @@
 package io.swagger.client.model.details;
 
 import com.google.gson.annotations.SerializedName;
+import io.swagger.client.model.orders.ModifyOrderRequest;
+import io.swagger.client.model.orders.PlaceOrderRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
@@ -10,11 +12,17 @@ import java.util.Objects;
  */
 
 public class IntradayData {
-    @SerializedName("exchangeInstrumentID")
-    private String exchangeInstrumentID = null;
+    @SerializedName("symbol")
+    private String symbol = null;
+
+    @SerializedName("resolution")
+    private String resolution = null;
+
+    @SerializedName("instrument")
+    private PlaceOrderRequest.InstrumentEnum instrument = null;
 
     @SerializedName("exchange")
-    private String exchange = null;
+    private ModifyOrderRequest.ExcEnum exchange = null;
 
     @SerializedName("startTime")
     private String startTime = null;
@@ -22,55 +30,52 @@ public class IntradayData {
     @SerializedName("endTime")
     private String endTime = null;
 
-    public IntradayData exchangeInstrumentID(String exchangeInstrumentID) {
-        this.exchangeInstrumentID = exchangeInstrumentID;
-        return this;
-    }
 
-    /**
-     * Get exchangeInstrumentID
-     *
-     * @return exchangeInstrumentID
-     **/
-    @Schema(example = "25", description = "")
-    public String getExchangeInstrumentID() {
-        return exchangeInstrumentID;
-    }
-
-    public void setExchangeInstrumentID(String exchangeInstrumentID) {
-        this.exchangeInstrumentID = exchangeInstrumentID;
-    }
-
-    public IntradayData exchange(String exchange) {
+    public IntradayData(String symbol, String resolution, PlaceOrderRequest.InstrumentEnum instrument, ModifyOrderRequest.ExcEnum exchange, String startTime, String endTime) {
+        this.symbol = symbol;
+        this.resolution = resolution;
+        this.instrument = instrument;
         this.exchange = exchange;
-        return this;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    /**
-     * Get exchange
-     *
-     * @return exchange
-     **/
-    @Schema(example = "NSE", description = "")
-    public String getExchange() {
+    public IntradayData() {
+
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    public PlaceOrderRequest.InstrumentEnum getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(PlaceOrderRequest.InstrumentEnum instrument) {
+        this.instrument = instrument;
+    }
+
+    public ModifyOrderRequest.ExcEnum getExchange() {
         return exchange;
     }
 
-    public void setExchange(String exchange) {
+    public void setExchange(ModifyOrderRequest.ExcEnum exchange) {
         this.exchange = exchange;
     }
 
-    public IntradayData startTime(String startTime) {
-        this.startTime = startTime;
-        return this;
-    }
-
-    /**
-     * Get startTime
-     *
-     * @return startTime
-     **/
-    @Schema(example = "Mar 14 2024 150000", description = "")
     public String getStartTime() {
         return startTime;
     }
@@ -79,17 +84,6 @@ public class IntradayData {
         this.startTime = startTime;
     }
 
-    public IntradayData endTime(String endTime) {
-        this.endTime = endTime;
-        return this;
-    }
-
-    /**
-     * Get endTime
-     *
-     * @return endTime
-     **/
-    @Schema(example = "Mar 14 2024 161500", description = "")
     public String getEndTime() {
         return endTime;
     }
@@ -98,48 +92,28 @@ public class IntradayData {
         this.endTime = endTime;
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        IntradayData intradayData = (IntradayData) o;
-        return Objects.equals(this.exchangeInstrumentID, intradayData.exchangeInstrumentID) &&
-                Objects.equals(this.exchange, intradayData.exchange) &&
-                Objects.equals(this.startTime, intradayData.startTime) &&
-                Objects.equals(this.endTime, intradayData.endTime);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IntradayData that = (IntradayData) o;
+        return Objects.equals(symbol, that.symbol) && Objects.equals(resolution, that.resolution) && instrument == that.instrument && exchange == that.exchange && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exchangeInstrumentID, exchange, startTime, endTime);
+        return Objects.hash(symbol, resolution, instrument, exchange, startTime, endTime);
     }
-
 
     @Override
     public String toString() {
-
-        return "class IntradayData {\n" +
-                "    exchangeInstrumentID: " + toIndentedString(exchangeInstrumentID) + "\n" +
-                "    exchange: " + toIndentedString(exchange) + "\n" +
-                "    startTime: " + toIndentedString(startTime) + "\n" +
-                "    endTime: " + toIndentedString(endTime) + "\n" +
-                "}";
+        return "IntradayData{" +
+                "symbol='" + symbol + '\'' +
+                ", resolution='" + resolution + '\'' +
+                ", instrument=" + instrument +
+                ", exchange=" + exchange +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
     }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
 }

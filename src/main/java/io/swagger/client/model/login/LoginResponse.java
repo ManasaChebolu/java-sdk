@@ -9,11 +9,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * LoginResponse Body
  */
 
-@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-05T10:01:29.776828552Z[GMT]")
+//@javax.annotation.processing.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-06-05T10:01:29.776828552Z[GMT]")
 
 public class LoginResponse {
-    @SerializedName("infoId")
-    private String infoId = null;
+    @SerializedName("infoID")
+    private String infoID = null;
 
     @SerializedName("infoMsg")
     private String infoMsg = null;
@@ -24,8 +24,8 @@ public class LoginResponse {
     @SerializedName("timestamp")
     private Long timestamp = null;
 
-    public LoginResponse code(String code) {
-        this.infoId = code;
+    public LoginResponse infoID(String infoID) {
+        this.infoID = infoID;
         return this;
     }
 
@@ -35,16 +35,16 @@ public class LoginResponse {
      * @return code
      **/
     @Schema(description = "Status code")
-    public String getCode() {
-        return infoId;
+    public String getInfoID() {
+        return infoID;
     }
 
-    public void setCode(String code) {
-        this.infoId = code;
+    public void setInfoID(String infoID) {
+        this.infoID = infoID;
     }
 
-    public LoginResponse message(String message) {
-        this.infoMsg = message;
+    public LoginResponse infoMsg(String infoMsg) {
+        this.infoMsg = infoMsg;
         return this;
     }
 
@@ -54,12 +54,12 @@ public class LoginResponse {
      * @return message
      **/
     @Schema(description = "Message indicating the status of the request")
-    public String getMessage() {
+    public String getInfoMsg() {
         return infoMsg;
     }
 
-    public void setMessage(String message) {
-        this.infoMsg = message;
+    public void setInfoMsg(String infoMsg) {
+        this.infoMsg = infoMsg;
     }
 
     public LoginResponse data(Data data) {
@@ -110,7 +110,7 @@ public class LoginResponse {
             return false;
         }
         LoginResponse inlineResponse200 = (LoginResponse) o;
-        return Objects.equals(this.infoId, inlineResponse200.infoId) &&
+        return Objects.equals(this.infoID, inlineResponse200.infoID) &&
                 Objects.equals(this.infoMsg, inlineResponse200.infoMsg) &&
                 Objects.equals(this.data, inlineResponse200.data) &&
                 Objects.equals(this.timestamp, inlineResponse200.timestamp);
@@ -118,7 +118,7 @@ public class LoginResponse {
 
     @Override
     public int hashCode() {
-        return Objects.hash(infoId, infoMsg, data, timestamp);
+        return Objects.hash(infoID, infoMsg, data, timestamp);
     }
 
 
@@ -127,10 +127,16 @@ public class LoginResponse {
         StringBuilder sb = new StringBuilder();
         sb.append("class LoginResponse {\n");
 
-        sb.append(" code: ").append(toIndentedString(infoId)).append("\n");
-        sb.append(" message: ").append(toIndentedString(infoMsg)).append("\n");
+        sb.append("infoID: ").append(toIndentedString(infoID)).append("\n");
+        sb.append("infoMsg: ").append(toIndentedString(infoMsg)).append("\n");
+        sb.append("timestamp: ").append(toIndentedString(timestamp)).append("\n");
         sb.append(" data: ").append("{").append("\n");
         sb.append("   accessToken: ").append(toIndentedString(data.getAccessToken())).append("\n");
+        sb.append("   userName: ").append(toIndentedString(data.getUserName())).append("\n");
+        sb.append("   appId: ").append(toIndentedString(data.getAppId())).append("\n");
+        sb.append("   redirectUrl: ").append(toIndentedString(data.getRedirectUrl())).append("\n");
+        sb.append("   refreshToken: ").append(toIndentedString(data.getRefreshToken())).append("\n");
+        sb.append("   tokenExpiry: ").append(toIndentedString(data.getTokenExpiry())).append("\n");
         sb.append(" }").append("\n");
         sb.append("}");
         return sb.toString();

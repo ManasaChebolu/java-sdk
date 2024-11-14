@@ -10,35 +10,35 @@ import java.util.Objects;
  */
 
 public class FundsSuccess {
-    @SerializedName("infoid")
-    private String infoid = null;
+    @SerializedName("infoID")
+    private String infoId = null;
 
     @SerializedName("data")
     private FundsSuccessData data = null;
 
-    @SerializedName("infomsg")
-    private String infomsg = null;
+    @SerializedName("infoMsg")
+    private String infoMsg = null;
 
     @SerializedName("timestamp")
     private Float timestamp = null;
 
     public FundsSuccess infoid(String infoid) {
-        this.infoid = infoid;
+        this.infoId = infoid;
         return this;
     }
 
     /**
-     * Get infoid
+     * Get infoId
      *
-     * @return infoid
+     * @return infoId
      **/
     @Schema(example = "200", description = "")
-    public String getInfoid() {
-        return infoid;
+    public String getInfoId() {
+        return infoId;
     }
 
-    public void setInfoid(String infoid) {
-        this.infoid = infoid;
+    public void setInfoId(String infoId) {
+        this.infoId = infoId;
     }
 
     public FundsSuccess data(FundsSuccessData data) {
@@ -61,22 +61,22 @@ public class FundsSuccess {
     }
 
     public FundsSuccess infomsg(String infomsg) {
-        this.infomsg = infomsg;
+        this.infoMsg = infomsg;
         return this;
     }
 
     /**
-     * Get infomsg
+     * Get infoMsg
      *
-     * @return infomsg
+     * @return infoMsg
      **/
     @Schema(example = "success", description = "")
-    public String getInfomsg() {
-        return infomsg;
+    public String getInfoMsg() {
+        return infoMsg;
     }
 
-    public void setInfomsg(String infomsg) {
-        this.infomsg = infomsg;
+    public void setInfoMsg(String infoMsg) {
+        this.infoMsg = infoMsg;
     }
 
     public FundsSuccess timestamp(Float timestamp) {
@@ -108,15 +108,15 @@ public class FundsSuccess {
             return false;
         }
         FundsSuccess fundsSucess = (FundsSuccess) o;
-        return Objects.equals(this.infoid, fundsSucess.infoid) &&
+        return Objects.equals(this.infoId, fundsSucess.infoId) &&
                 Objects.equals(this.data, fundsSucess.data) &&
-                Objects.equals(this.infomsg, fundsSucess.infomsg) &&
+                Objects.equals(this.infoMsg, fundsSucess.infoMsg) &&
                 Objects.equals(this.timestamp, fundsSucess.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(infoid, data, infomsg, timestamp);
+        return Objects.hash(infoId, data, infoMsg, timestamp);
     }
 
 
@@ -124,9 +124,9 @@ public class FundsSuccess {
     public String toString() {
 
         return "class FundsSucess {\n" +
-                "    infoid: " + toIndentedString(infoid) + "\n" +
+                "    infoID: " + toIndentedString(infoId) + "\n" +
                 "    data: " + toIndentedString(data) + "\n" +
-                "    infomsg: " + toIndentedString(infomsg) + "\n" +
+                "    infoMsg: " + toIndentedString(infoMsg) + "\n" +
                 "    timestamp: " + toIndentedString(timestamp) + "\n" +
                 "}";
     }

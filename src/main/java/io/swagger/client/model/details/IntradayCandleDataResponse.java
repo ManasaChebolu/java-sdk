@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * IntradaySuccess
+ * IntradayCandleDataResponse
  */
 
-public class IntradaySuccess {
+public class IntradayCandleDataResponse {
     @SerializedName("infoID")
     private String infoID = null;
 
@@ -19,17 +19,17 @@ public class IntradaySuccess {
     @SerializedName("infoMsg")
     private String infoMsg = null;
 
-    public IntradaySuccess infoID(String infoID) {
+    @SerializedName("timestamp")
+    private String timestamp = null;
+
+
+    public IntradayCandleDataResponse(String infoID, IntradaySuccessData data, String infoMsg, String timestamp) {
         this.infoID = infoID;
-        return this;
+        this.data = data;
+        this.infoMsg = infoMsg;
+        this.timestamp = timestamp;
     }
 
-    /**
-     * Get infoID
-     *
-     * @return infoID
-     **/
-    @Schema(example = "0", description = "")
     public String getInfoID() {
         return infoID;
     }
@@ -38,17 +38,6 @@ public class IntradaySuccess {
         this.infoID = infoID;
     }
 
-    public IntradaySuccess data(IntradaySuccessData data) {
-        this.data = data;
-        return this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return data
-     **/
-    @Schema(description = "")
     public IntradaySuccessData getData() {
         return data;
     }
@@ -57,17 +46,6 @@ public class IntradaySuccess {
         this.data = data;
     }
 
-    public IntradaySuccess infoMsg(String infoMsg) {
-        this.infoMsg = infoMsg;
-        return this;
-    }
-
-    /**
-     * Get infoMsg
-     *
-     * @return infoMsg
-     **/
-    @Schema(description = "")
     public String getInfoMsg() {
         return infoMsg;
     }
@@ -76,46 +54,34 @@ public class IntradaySuccess {
         this.infoMsg = infoMsg;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        IntradaySuccess intradaySuccess = (IntradaySuccess) o;
-        return Objects.equals(this.infoID, intradaySuccess.infoID) &&
-                Objects.equals(this.data, intradaySuccess.data) &&
-                Objects.equals(this.infoMsg, intradaySuccess.infoMsg);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IntradayCandleDataResponse that = (IntradayCandleDataResponse) o;
+        return Objects.equals(infoID, that.infoID) && Objects.equals(data, that.data) && Objects.equals(infoMsg, that.infoMsg) && Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(infoID, data, infoMsg);
+        return Objects.hash(infoID, data, infoMsg, timestamp);
     }
-
 
     @Override
     public String toString() {
-
-        return "class IntradaySuccess {\n" +
-                "    infoID: " + toIndentedString(infoID) + "\n" +
-                "    data: " + toIndentedString(data) + "\n" +
-                "    infoMsg: " + toIndentedString(infoMsg) + "\n" +
-                "}";
+        return "IntradayCandleDataResponse{" +
+                "infoID='" + infoID + '\'' +
+                ", data=" + data +
+                ", infoMsg='" + infoMsg + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
 }

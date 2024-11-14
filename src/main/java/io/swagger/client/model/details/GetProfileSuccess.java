@@ -16,11 +16,36 @@ public class GetProfileSuccess {
     @SerializedName("data")
     private GetProfileSuccessData data = null;
 
+    @SerializedName("infoMsg")
+    private String infoMsg = null;
+
+    @SerializedName("timestamp")
+    private String timestamp = null;
+
     public GetProfileSuccess infoID(String infoID) {
         this.infoID = infoID;
         return this;
     }
 
+    public GetProfileSuccess(String infoMsg, String timestamp) {
+        this.infoMsg = infoMsg;
+        this.timestamp = timestamp;
+    }
+    public String getInfoMsg() {
+        return infoMsg;
+    }
+
+    public void setInfoMsg(String infoMsg) {
+        this.infoMsg = infoMsg;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
     /**
      * Get infoID
      *
@@ -65,7 +90,7 @@ public class GetProfileSuccess {
         }
         GetProfileSuccess getProfileSucsess = (GetProfileSuccess) o;
         return Objects.equals(this.infoID, getProfileSucsess.infoID) &&
-                Objects.equals(this.data, getProfileSucsess.data);
+                Objects.equals(this.data, getProfileSucsess.data)&& Objects.equals(infoMsg, getProfileSucsess.infoMsg) && Objects.equals(timestamp, getProfileSucsess.timestamp);
     }
 
     @Override
@@ -78,9 +103,11 @@ public class GetProfileSuccess {
     public String toString() {
 
         return "class GetProfileSuccess {\n" +
-                "    infoID: " + toIndentedString(infoID) + "\n" +
-                "    data: " + toIndentedString(data) + "\n" +
-                "}";
+                "infoID='" + infoID + '\'' +
+                ", data=" + data +
+                ", infoMsg='" + infoMsg + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 
     /**
